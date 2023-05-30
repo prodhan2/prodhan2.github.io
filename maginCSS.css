@@ -1,0 +1,22 @@
+#a{
+    border: 14px solid red;
+    background-color: rgb(255, 220, 255);
+    margin-bottom: 10px;
+    padding: 10px 10px 10px;
+    outline-width: 5px;
+    outline-style: dotted;
+    writing-mode: vertical-rl;
+}
+#b{
+    border: 5px solid red;background-color: rgb(255, 220, 255);
+    margin-bottom: 10px;
+   outline-width: 22px;
+}
+#c{
+    border: 5px solid red;background-color: rgb(255, 220, 255);
+    margin-bottom: 20px;
+}
+#d{
+    border: 5px solid red;background-color: rgb(255, 220, 255);
+    margin-bottom: 20px;
+}
