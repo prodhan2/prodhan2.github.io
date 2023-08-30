@@ -3,75 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Text Animation</title>
+    <title>3D LED Rainbow Display</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
     </style>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Set up the scene
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-        // Create a cube
-        const cubeGeometry = new THREE.BoxGeometry(3, 3, 3);
-        const cubeMaterials = [
-            new THREE.MeshBasicMaterial({ color: 0xff0000 }),
-            new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-            new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-            new THREE.MeshBasicMaterial({ color: 0xffff00 }),
-            new THREE.MeshBasicMaterial({ color: 0x00ffff }),
-            new THREE.MeshBasicMaterial({ color: 0xff00ff })
-        ];
-        const cube = new THREE.Mesh(cubeGeometry, cubeMaterials);
-        scene.add(cube);
+    const cubeGeometry = new THREE.BoxGeometry(3, 3, 3);
+    const cubeMaterials = [
+        new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+        new THREE.MeshBasicMaterial({ color: 0xff9900 }),
+        new THREE.MeshBasicMaterial({ color: 0xffff00 }),
+        new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
+        new THREE.MeshBasicMaterial({ color: 0x00ffff }),
+        new THREE.MeshBasicMaterial({ color: 0x0000ff }),
+        new THREE.MeshBasicMaterial({ color: 0xff00ff }),
+    ];
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterials);
+    scene.add(cube);
 
-        // Add text to the cube faces
-        const loader = new THREE.FontLoader();
-        loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', font => {
-            const textGeometry = new THREE.TextGeometry('Sumyta.AI', {
-                font: font,
-                size: 0.5,
-                height: 0.02,
-                curveSegments: 12
-            });
-
-            const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-            const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-            
-            // Position the text on cube faces
-            textMesh.position.set(-1, 0.5, 1.5);
-            cube.add(textMesh.clone());
-            textMesh.position.set(-1, 0.5, -1.5);
-            cube.add(textMesh.clone());
-            textMesh.position.set(1, 0.5, 1.5);
-            cube.add(textMesh.clone());
-            textMesh.position.set(1, 0.5, -1.5);
-            cube.add(textMesh.clone());
-            textMesh.position.set(0, 1.5, 0);
-            cube.add(textMesh.clone());
-            textMesh.position.set(0, -1.5, 0);
-            cube.add(textMesh.clone());
-
-            // Set up camera position
-            camera.position.z = 5;
-
-            // Render loop
-            const animate = () => {
-                requestAnimationFrame(animate);
-                cube.rotation.x += 0.01;
-                cube.rotation.y += 0.01;
-                renderer.render(scene, camera);
-            };
-
-            animate();
+    const loader = new THREE.FontLoader();
+    loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', font => {
+        const textGeometry = new THREE.TextGeometry('Sumyta.AI', {
+            font: font,
+            size: 0.5,
+            height: 0.02,
+            curveSegments: 12
         });
-    </script>
+
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh.position.set(-1.2, 0.8, 1.2);
+        cube.add(textMesh.clone());
+        textMesh.position.set(-1.2, 0.8, -1.2);
+        cube.add(textMesh.clone());
+        textMesh.position.set(1.2, 0.8, 1.2);
+        cube.add(textMesh.clone());
+        textMesh.position.set(1.2, 0.8, -1.2);
+        cube.add(textMesh.clone());
+        textMesh.position.set(0, 1.8, 0);
+        cube.add(textMesh.clone());
+        textMesh.position.set(0, -1.2, 0);
+        cube.add(textMesh.clone());
+
+        camera.position.z = 5;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    });
+</script>
 </body>
 </html>
