@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typed Text Animation</title>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            flex-direction: column;
+        }
+
+        .typing-text {
+            font-size: 2em;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.15em solid white;
+        }
+
+        .rainbow-border {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+            background-clip: text;
+            -webkit-background-clip: text;
+            border: 5px solid transparent;
+            animation: border-3d 3s linear infinite;
+        }
+
+        .orange-text {
+            color: orange;
+            font-weight: bold;
+        }
+
+        @keyframes border-3d {
+            0%, 100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red); }
+            25% { border-image: linear-gradient(45deg, yellow, orange, red, green, blue, indigo, violet, yellow); }
+            50% { border-image: linear-gradient(45deg, green, yellow, orange, red, blue, indigo, violet, green); }
+            75% { border-image: linear-gradient(45deg, blue, green, yellow, orange, red, indigo, violet, blue); }
+        }
+    </style>
+</head>
+<body>
+<div class="typing-text"></div>
+
+<script>
+    const options = {
+        strings: ["Welcome <span class='orange-text'>Sumyta.AI</span>", "This is the powerful AI system for education purpose"],
+        typeSpeed: 50,
+        backSpeed: 20,
+        showCursor: false,
+        loop: true // This makes the typing loop infinitely
+    };
+
+    const typed = new Typed(".typing-text", options);
+</script>
+</body>
+</html>
