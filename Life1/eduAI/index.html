@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typed Text Animation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            flex-direction: column;
+        }
+
+        .typing-text {
+            font-size: 2em;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.15em solid white;
+            margin-bottom: 20px;
+        }
+
+        .footer-box {
+            background: linear-gradient(90deg, red, orange, yellow, #4eff07, violet, red); /* Rainbow background */
+            -webkit-background-clip: text;
+            color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+            position: relative; /* Add relative positioning for shadow */
+            z-index: 1; /* Ensure footer box is above shadow */
+            font-weight: bold; /* Set footer text to bold */
+        }
+
+        .footer-shadow {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            z-index: -1; /* Place shadow below footer box */
+        }
+
+        .rainbow-border {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+            background-clip: text;
+            -webkit-background-clip: text;
+            border: 5px solid transparent;
+            animation: border-3d 3s linear infinite;
+        }
+
+        .orange-text {
+            color: orange;
+            font-weight: bold;
+        }
+
+        @keyframes border-3d {
+            0%, 100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red); }
+            25% { border-image: linear-gradient(45deg, yellow, orange, red, green, blue, indigo, violet, yellow); }
+            50% { border-image: linear-gradient(45deg, green, yellow, orange, red, blue, indigo, violet, green); }
+            75% { border-image: linear-gradient(45deg, blue, green, yellow, orange, red, indigo, violet, blue); }
+        }
+    </style>
+</head>
+<body>
+<div class="typing-text"></div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="footer-box">
+                <div class="typing-box" id="typingBox"></div>
+                <div class="footer-shadow"></div> <!-- Add the footer shadow -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const options = {
+        strings: ["Welcome to <span class='orange-text'>Sumyta.AI</span>", "This is the powerful AI system for education purpose"],
+        typeSpeed: 40,
+        backSpeed: 18,
+        showCursor: false,
+        loop: true // This makes the typing loop infinitely
+    };
+
+    const typed = new Typed(".typing-text", options);
+
+    const footerText = `
+আপনাকে স্বাগতম sumyta.ai এ। আমি একটি ai সিস্টেম এ দেশের শিক্ষাব্যবস্থার উন্নতির লক্ষ্যে কাজ করছি।পুরোপুরি কাজটি শেষ না হওয়া পর্যন্ত এই আমার সাথে থাকুন।এখানে শিক্ষামুল্ক সমস্ত ফিচারগুলো এড করে আমাকে উন্নত করা হচ্ছে।আমি অটোমেটিক প্রশ্ন তৈরি ও মুল্যায়ন করতে পারি।এ ধরনের
+বিভিন্ন কাজ করতে সক্ষম:
+অটোমেটিক শিক্ষা তৈরি এবং সরবরাহ: এটি শিক্ষার্থীদের জন্য অনুকূলিত পাঠ্যক্রম তৈরি এবং সরবরাহ করতে পারে, যা প্রতিটি ছাত্রের প্রয়োজনমত উন্নতি নিশ্চিত করতে সাহায্য করে।
+অটোমেটিক মূল্যায়ন: এই সিস্টেম শিক্ষার্থীদের প্রগতি মূল্যায়ন করতে সাহায্য করতে পারে এবং উন্নতির সূচনা প্রদান করতে সাহায্য করতে পারে।
+ব্যক্তিগত শিক্ষা পরামর্শ: শিক্ষার্থীদের প্রয়োজনীয় সামগ্রী, পাঠ্যপুস্তক, ওয়েবসাইট, ব্লগ ইত্যাদি পরামর্শ প্রদান করে এবং তাদের পড়াশোনার প্রক্রিয়াটি সরঞ্জাম করতে সাহায্য করতে পারে।
+প্রশ্ন-উত্তর বই: শিক্ষার্থীদের জন্য প্রশ্ন-উত্তর বই তৈরি করতে সাহায্য করতে পারে, যা তাদের পড়াশোনা সম্পর্কিত সমস্যা সমাধান করতে সাহায্য করতে পারে।
+শিক্ষার্থী প্রগতির অনুসরণ: এটি শিক্ষার্থীদের প্রগতি অনুসরণ এবং মূল্যায়ন করে এবং শিক্ষকদের পরামর্শ প্রদান করে যেন তারা উন্নতি করতে সাহায্য করতে পারে।
+শিক্ষক সাথে সাথে সহায়ক: শিক্ষকদের জন্য সামগ্রী, সাহায্য, এবং প্রোফেশনাল উন্নতির সংক্ষিপ্ত মার্গদর্শন প্রদান করে।
+সম্প্রতির চ্যালেঞ্জেস এবং সমাধান: শিক্ষার্থীদের সামগ্রীগুলি উপলব্ধ করানো, অন্যত্র প্রতিষ্ঠানে প্রবেশের ক্ষেত্রে সাহায্য করা, প্রতিষ্ঠানে বা অনলাইনে সমস্যাগুলি সমাধান করা এবং শিক্ষাব্যবস্থার উন্নতির জন্য প্রস্তাবনা তৈরি করা।
+
+- কম্পিউটার সাইন্স এন্ড ইঞ্জিনিয়ারিং ) রাজশাহী ইউনিভার্সিটি`;
+
+    let currentFooterCharIndex = 0;
+    const footerTypingBox = document.getElementById('typingBox');
+
+    function typeFooterText() {
+        if (currentFooterCharIndex < footerText.length) {
+            footerTypingBox.textContent += footerText[currentFooterCharIndex];
+            currentFooterCharIndex++;
+            setTimeout(typeFooterText, 20); // Adjust the typing speed here
+        }
+    }
+
+    // Start typing footer text after a delay
+    setTimeout(typeFooterText, 900); // Adjust the delay here
+</script>
+</body>
+</html>
