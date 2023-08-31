@@ -88,7 +88,7 @@
 
 <script>
     const options = {
-        strings: ["Welcome to <span class='orange-text'>Prodhan.AI</span>", "It is a powerful AI system. Designed to facilitate learning for Bangladesh Students"],
+        strings: ["Welcome to <span class='orange-text'>Prodhan.ai</span>", "It is a powerful AI system. Designed to facilitate learning for Bangladesh Students"],
         typeSpeed: 40,
         backSpeed: 18,
         showCursor: false,
@@ -108,21 +108,34 @@
 শিক্ষক সাথে সাথে সহায়ক: শিক্ষকদের জন্য সামগ্রী, সাহায্য, এবং প্রোফেশনাল উন্নতির সংক্ষিপ্ত মার্গদর্শন প্রদান করে।
 সম্প্রতির চ্যালেঞ্জেস এবং সমাধান: শিক্ষার্থীদের সামগ্রীগুলি উপলব্ধ করানো, অন্যত্র প্রতিষ্ঠানে প্রবেশের ক্ষেত্রে সাহায্য করা, প্রতিষ্ঠানে বা অনলাইনে সমস্যাগুলি সমাধান করা এবং শিক্ষাব্যবস্থার উন্নতির জন্য প্রস্তাবনা তৈরি করা।
 
-- কম্পিউটার সাইন্স এন্ড ইঞ্জিনিয়ারিং ) রাজশাহী ইউনিভার্সিটি`;
+- sujan prodhan কম্পিউটার সাইন্স এন্ড ইঞ্জিনিয়ারিং ) রাজশাহী ইউনিভার্সিটি`;
 
     let currentFooterCharIndex = 0;
     const footerTypingBox = document.getElementById('typingBox');
 
     function typeFooterText() {
-        if (currentFooterCharIndex < footerText.length) {
-            footerTypingBox.textContent += footerText[currentFooterCharIndex];
-            currentFooterCharIndex++;
-            setTimeout(typeFooterText, 20); // Adjust the typing speed here
+        footerTypingBox.textContent = ''; // Clear the content of the typing box
+        currentFooterCharIndex = 0; // Reset the character index
+
+        // Function to type a single character
+        function typeCharacter() {
+            if (currentFooterCharIndex < footerText.length) {
+                footerTypingBox.textContent += footerText[currentFooterCharIndex];
+                currentFooterCharIndex++;
+                setTimeout(typeCharacter, 35); // Adjust the typing speed here
+            } else {
+                setTimeout(typeFooterText, 1800); // Retype after 15 seconds
+            }
         }
+
+        typeCharacter(); // Start typing the text
     }
 
+    // Start typing footer text immediately
+    typeFooterText();
+
     // Start typing footer text after a delay
-    setTimeout(typeFooterText, 900); // Adjust the delay here
+    // setTimeout(typeFooterText, 900); // Adjust the delay here
 </script>
 </body>
 </html>
