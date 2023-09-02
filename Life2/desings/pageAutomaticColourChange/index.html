@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automatic Color Change</title>
+    <style>
+        body {
+            transition: background-color 1s ease; /* Smooth transition for color change */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function changeColor() {
+            const colors = ["#FF5733", "#33FF57", "#5733FF", "#FFFF33", "#33FFFF"];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // Change the color every 3 seconds (3000 milliseconds)
+        setInterval(changeColor, 3000);
+    </script>
+</body>
+</html>
