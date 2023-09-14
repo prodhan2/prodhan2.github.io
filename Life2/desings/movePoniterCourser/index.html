@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Trailing Images</h1>
+<p>Move your cursor around</p>
+<canvas id="canvas"></canvas>
+
+</body>
+<style>
+  canvas {
+  display: block;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+h1 {
+  font-family: Helvetica;
+  font-size: 80px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+body {
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: Helvetica;
+  gap: 20px;
+  min-height: 100vh;
+}
+
+</style>
+<script>
+  const configs = {
+  delay: 500,
+  maxImageSize: 120,
+  minDistance: 50,
+};
+
+const images = [
+  "https://upload.wikimedia.org/wikipedia/commons/d/d9/Kodaki_fuji_frm_shojinko.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Chisos-mountains-roman.jpg/800px-Chisos-mountains-roman.jpg?20200518063742",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Lamayuru%2C_Mountains%2C_Valley%2C_Ladakh%2C_India.jpg/800px-Lamayuru%2C_Mountains%2C_Valley%2C_Ladakh%2C_India.jpg?20230307131159",
+  "https://upload.wikimedia.org/wikipedia/commons/5/5a/Sulfur_Mountain_in_Pulangbato%2C_Dumaguete.jpg?20210610031221",
+  "https://upload.wikimedia.org/wikipedia/commons/d/df/Tent_with_Mountain.jpg?20210524135013",
+];
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let trailImages = [];
+let currentImageIndex = 0;
+let prevMouseX = 0;
+let prevMouseY = 0;
+
+function drawImageTrail() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const currentTime = Date.now();
+  for (let i = 0; i < trailImages.length; i++) {
+    const image = trailImages[i];
+    const elapsed = currentTime - image.startTime;
+    const scale = 1 - (elapsed / configs.delay);
+
+    if (scale <= 0) {
+      trailImages.splice(i, 1);
+      i--;
+      continue;
+    }
+
+    const imageX = image.x - (image.width * scale) / 2;
+    const imageY = image.y - (image.height * scale) / 2;
+    ctx.globalAlpha = scale;
+    ctx.drawImage(image.image, imageX, imageY, image.width * scale, image.height * scale);
+  }
+
+  requestAnimationFrame(drawImageTrail);
+}
+
+function updateCanvasSize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function getDistance(x1, y1, x2, y2) {
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+}
+
+function onMouseMove(event) {
+  const x = event.clientX;
+  const y = event.clientY;
+
+  if (getDistance(x, y, prevMouseX, prevMouseY) >= configs.minDistance) {
+    const imageSrc = images[currentImageIndex];
+    const image = new Image();
+    image.src = imageSrc;
+
+    const width = Math.min(image.width, configs.maxImageSize);
+    const height = Math.min(image.height, configs.maxImageSize);
+
+    trailImages.push({
+      image: image,
+      x: x,
+      y: y,
+      width: width,
+      height: height,
+      startTime: Date.now(),
+    });
+
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    prevMouseX = x;
+    prevMouseY = y;
+
+    // Sort images to ensure newer images are drawn on top
+    trailImages.sort((a, b) => a.startTime - b.startTime);
+  }
+}
+
+window.addEventListener("resize", updateCanvasSize);
+window.addEventListener("mousemove", onMouseMove);
+
+// Start the animation loop
+drawImageTrail();
+
+</script>
+</html>
