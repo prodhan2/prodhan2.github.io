@@ -1,0 +1,60 @@
+  <main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+      <img class="mr-3" src="https://cdn-icons.flaticon.com/png/512/3407/premium/3407038.png?token=exp=1657450157~hmac=56962ab70c267a068444924fe3c9eca3" alt="" width="48" height="48">
+      <div class="lh-100">
+        <h3 class="mb-0 text-white lh-100">Quiz Demo</h3>
+        <small>Test your knowledge</small>
+      </div>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm position-relative">
+
+      <h4 class="alert alert-success count-down-box position-absolute ">
+        <small class="mr-1">Quiz Time</small> <span class="badge badge-dark" id="count-down">1:30</span>
+      </h4>
+
+      <button type="button"
+        class="d-flex align-items-center justify-content-center btn btn-success btn-lg btn-block start-to-quiz">
+     
+        <div class="quiz-start-text">Start To Quiz</div>
+      </button>
+      <h3 style="display: none;" class="pb-2 mb-3 question-title">Questions</h3>
+      <div class="mt-4 accordion quiz-item-container" id="accordionExample">
+      </div>
+    </div>
+
+    <div style="display: none;" class="my-3 p-3 bg-white rounded shadow-sm result-container">
+
+      <button id="show-result" type="button" class="btn btn-outline-danger" data-toggle="modal"
+        data-target="#resultModal">
+        Show Results
+      </button>
+
+      <div class="modal fade" id="resultModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Results</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body selected-answer-result">
+
+
+            </div>
+            <div class="modal-footer justify-space-between">
+              <div class="total-point"><strong>YOUR POINT:</strong> <strong
+                  class="alert alert-success user-point">?</strong> / 100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
