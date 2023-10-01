@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* CSS code */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: width 0.3s ease-in-out;
+    }
+    input[type="text"]:focus {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML code -->
+  <input type="text" id="searchInput" placeholder="Search for names..">
+
+    <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Session</th>
+        <th>Hall name</th>
+        <th>Phone</th>
+        <th>Email (<a href="mailto:example@example.com">email</a>)</th>
+        <th>FB ID (<a href="mailto:example@example.com">email</a>)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr> <tr>
+        <td>John Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr><tr>
+        <td>John Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr><tr>
+        <td>sujan Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr><tr>
+        <td>John Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr><tr>
+        <td>alalm Doe</td>
+        <td>Fall 2021</td>
+        <td>Smith Hall</td>
+        <td>123-456-7890</td>
+        <td><a href="mailto:john@example.com">john@example.com</a></td>
+        <td><a href="mailto:john_fb@example.com">john_fb@example.com</a></td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+
+  <script>
+    // JavaScript code
+const searchInput = document.getElementById('searchInput');
+const table = document.querySelector('table');
+
+searchInput.addEventListener('keyup', function() {
+  const searchText = searchInput.value.toLowerCase();
+  const rows = table.getElementsByTagName('tr');
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    const cells = row.getElementsByTagName('td');
+    let found = false;
+
+    for (let j = 0; j < cells.length; j++) {
+      const cell = cells[j];
+      if (cell) {
+        const cellText = cell.textContent || cell.innerText;
+        if (cellText.toLowerCase().indexOf(searchText) > -1) {
+          found = true;
+          break;
+        }
+      }
+    }
+
+    if (found) {
+      row.style.display = '';
+      row.style.backgroundColor = '#dff0d8'; // Change background color when data is found
+    } else {
+      row.style.display = 'none';
+      row.style.backgroundColor = ''; // Reset background color when data is not found
+    }
+  }
+});
+
+  </script>
+</body>
+</html>
