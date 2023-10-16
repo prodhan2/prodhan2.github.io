@@ -1,0 +1,31 @@
+.h1{
+    height: 500px;
+    width: 700px;
+background-color: green;
+border: 2px solid red;
+position: absolute;
+top: 0;
+left: 0;
+margin: auto;
+
+}
+.h2{
+    height: 300px;
+    width: 300px;
+background-color:red;
+border: 2px solid red;
+position: absolute;
+bottom: 0;
+right: 0;
+left: 0;top: 0;
+margin: auto;
+border-radius: 50%;
+
+}
+.h3{
+position:relative;
+bottom: 0;
+right:0;
+left: 0;top: 0;
+margin: auto; text-align: center ; m
+}
