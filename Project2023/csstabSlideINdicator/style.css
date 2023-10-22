@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    border: 0;
+
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;background:green;
+}
+.container
+{    max-width: 600px;
+     width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: solid ;
+    background-color:red;
+    border-radius: 20px;
+    padding: 20px 10px;
+    justify-content: center;
+    box-shadow: 0 0 8px yellow;
+
+}
+.container nav{
+   
+    width: 80%;
+    height: 30px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    
+}
+.container nav::after{
+    content: " " ;
+    background: silver;
+    width: 100%;
+    height: 1px;
+    position:absolute;
+    top: 40px;
+    filter: blur(0.3px);
+    align-items: center;
+    justify-content: center;
+}
+.container nav label{
+    text-align: center;
+    display: block;
+line-height: 50px;
+height: 100%;
+width: 100%;
+position: relative;
+font-size: 20px;
+font: weight 600;
+cursor: pointer;
+transform: all 0.3s ease;
+
+}
+#blog:checked ~ nav label .home,
+#blog:checked ~ nav label .blog,
+#blog:checked ~ nav label .code,
+#blog:checked ~ nav label .help,
+#blog:checked ~ nav label .about{
+    color: green;
+}
+
+
+input[type='radio']
+{
+    display:none;
+}
+.container nav .slider{
+    z-index: 1 ;
+}

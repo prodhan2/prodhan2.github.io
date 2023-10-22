@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Border Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        }
+
+        .rainbow-border {
+            width: 300vh;
+            height: 300px;
+            border: 8px solid ;
+            border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 100;
+            animation: rainbow 2s linear infinite;
+           
+        }
+        .H1{
+            background-color: red;
+        }
+
+        @keyframes rainbow {
+            0% {
+                
+                filter: hue-rotate(360deg);
+            }
+          
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="rainbow-border H1"></div>
+</body>
+</html>
