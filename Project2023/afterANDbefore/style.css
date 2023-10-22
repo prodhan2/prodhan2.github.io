@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.sujan{
+    margin-top: 30px;
+    padding: 30px;
+}
+
+
+.sujan::before{
+    content: '';
+   background: red;
+    width: 80px;
+    height: 4px;
+    display: flex;
+    margin: 0 auto;
+ }
+ 
+ 
+ .sujan::after{
+    content: '';
+   background: red;
+    width: 80px;
+    height: 4px;
+    display: flex;
+    margin: 0 auto;
+ }
+ 
