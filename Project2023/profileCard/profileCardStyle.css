@@ -1,0 +1,70 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+  *{
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+  }
+
+ body{
+    height: 100vb;
+   display: flex;
+ 
+    justify-content: center;
+    align-items: center;
+ }
+  .image{
+    position:relative;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    box-shadow: 0 0 15px #01e1fa; 
+    padding: 3px;
+ }
+ .pro{
+height: 100%;
+width: 100%;
+object-fit: cover;
+border-radius: 50%;
+
+  }
+
+.profileCard{
+max-width: 400px;
+width: 100%;
+background:linear-gradient(red , green 90px);
+box-shadow: 4px 2px 15px green;
+border-radius: 10px;
+  }
+  .text{
+color:red;
+text-decoration-style: solid;
+display: flex;
+flex-direction: column;
+align-items: center;
+  }
+  .button{
+    display: flex;
+    
+     align-items: center;
+    justify-content: center;
+  }
+  .link{margin: 2px;
+    color: green;
+   background:rgb(239, 3, 11);
+border-radius: 50%;
+ 
+  }
+  .profileCard .image:hover{
+background:linear-gradient( green , red 90px);
+animation:circle 1.4s backwards;
+
+  }
+  @keyframes circle{
+0%{
+    transform:scale(1.2);
+}
+  }
+ 
