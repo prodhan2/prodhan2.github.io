@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: black;
+}
+.icon a
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid rgb(52, 243, 4);
+border-radius: 50%;
+color: aqua;
+margin: 10px 10px 10px 10px;
+transition: .5s all ease;
+
+}
+.icon a:hover{
+    color: black;
+    background: aqua;
+    box-shadow: 0 0 20px aqua,0 0 20px aqua;
+}
