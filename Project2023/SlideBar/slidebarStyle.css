@@ -1,0 +1,138 @@
+*{
+   margin: 0;
+   padding: 0;
+    box-sizing: border-box;
+}
+.wrapper{
+    height: 100%;
+    width: 330px;
+    position: relative;
+  
+}
+.wrapper .slidebar{
+    position:fixed;
+    height: 100%;
+    width: 270px;
+    background: rgb(14, 3, 3);
+    overflow: hidden;
+    left: -270px;
+}
+
+.slidebar .tittle{
+    color: white;
+    text-align: center;
+    justify-content: center;
+    line-height: 65px;
+    background-color:red;
+    font-weight: 600;
+    font-size: 25px;
+}
+.list-iteams{
+    list-style: none;
+    position: relative;
+    height: 100%;
+    width: 100%;
+   
+
+}
+
+.list-iteams li a{
+    color: white;
+    padding-left: 40px;
+    line-height: 40px;
+    border-top: 1px solid rgb(20, 128, 110); 
+    border-bottom: 1px solid #b91818;
+    border-radius: 22px;
+    text-decoration: none;
+    display: flex;
+    text-transform: uppercase;
+}
+.list-iteams i{
+   
+    margin-right: 22px;
+    
+}
+
+li :hover{
+    border-radius: 22px;
+    border-bottom: transparent;
+    background-color: aqua;
+    box-shadow: 0 0 12px green;
+    animation: s 5s infinite;
+}
+
+@keyframes s{
+    0%{filter :hue-rotate(360deg);
+    }
+}
+
+
+.icons{
+height:100%;
+width: 100%;
+color: white;
+align-items: center;
+justify-content: center;
+margin-top: 100%;
+padding-left: 25px;
+
+}
+
+
+.icons a{
+    height: 30px;
+    width: 30px;
+    position: relative;
+    background-color: rgb(18, 19, 19);
+    color: white;
+   border: solid 2px rgb(56, 55, 55); 
+   transition: .3 all ease-in;
+
+}
+.icons :hover{
+    border-radius: 2px;
+    border-bottom: transparent;
+    background-color: aqua;
+    box-shadow: 0 0 12px green;
+    animation: s 5s infinite;
+
+}
+
+.wrapper .menu-btn{
+    position: absolute;
+    left: 20px;
+    height: 45px;
+    width: 45px;
+    top: 10px;
+    color: white;
+    z-index: 111111;
+    border:1px solid green;
+    
+text-align: center;
+background: rgb(53, 47, 47);
+border-radius: 5px;
+cursor: pointer;
+
+}
+input[type="checkbox"]
+{
+    display: none;
+}
+
+#btn:checked ~ .menu-btn
+{
+    left: 247px;
+    transition: all ease 0.5s;
+    
+}
+
+#btn:checked ~ .slidebar
+{
+    left: 0px;
+    transition:.5s all ease ;
+    
+}
+#btn:checked ~ .menu-btn i::before{
+    content: "X";
+
+}
