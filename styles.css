@@ -139,12 +139,15 @@
   
   /*  Nav Logo Span Linear-Gradient  */
   .navbar .logo a span {
-    background: linear-gradient(135deg, #041d3d, #fff, crimson);
+    background: linear-gradient(35deg, #086ef3, #f3f5f2, rgb(255, 3, 53));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    animation: logoAnimation 2s linear infinite;
   }
-  
+  @keyframes logoAnimation{
+    0%{filter: hue-rotate(360deg);}
+  }
   .navbar.sticky .logo a span {
     color: #fff;
   }
