@@ -147,6 +147,7 @@
   }
   @keyframes logoAnimation{
     0%{filter: hue-rotate(360deg);}
+    
   }
   .navbar.sticky .logo a span {
     color: #fff;
@@ -298,8 +299,14 @@
     width: 400px;
     object-fit: cover;
     border-radius: 6px;
+    box-shadow:2px 3px 12px rgb(2, 230, 242);
   }
-  
+
+  .about .about-content .left img:hover{
+
+    box-shadow:2px 3px 12px rgb(57, 4, 251);
+    
+  }
   .about .about-content .right {
     width: 55%;
   }
