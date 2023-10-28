@@ -118,6 +118,7 @@
     padding: 30px 0;
     font-family: "Ubuntu", sans-serif;
     transition: all 0.3s ease;
+ 
   }
   
   .navbar.sticky {
@@ -243,6 +244,8 @@
     font-size: 75px;
     font-weight: 600;
     margin-left: -3px;
+   -webkit-text-fill-color:aqua;
+    animation: logoAnimation 2s linear infinite;
   }
   
   .home .home-content .text-3 {
@@ -305,7 +308,8 @@
   .about .about-content .left img:hover{
 
     box-shadow:2px 3px 12px rgb(57, 4, 251);
-    
+    transform: scale(1.05);
+
   }
   .about .about-content .right {
     width: 55%;
