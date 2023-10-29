@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Audio Player</title>
+</head>
+<body>
+  <audio id="myAudio" src="https://cdn.discordapp.com/attachments/932672918859702355/1144455175512260668/Another_basic_acid_test.mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <button id="playButton">Play</button>
+
+  <script>
+    const audio = document.getElementById('myAudio');
+    const playButton = document.getElementById('playButton');
+
+    audio.addEventListener('playing', () => {
+      playButton.style.display = 'none'; // Hide the play button
+    });
+
+    // Automatically play the audio when the page loads
+    audio.play();
+  </script>
+</body>
+</html>
