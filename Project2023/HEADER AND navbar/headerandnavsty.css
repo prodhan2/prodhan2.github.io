@@ -1,0 +1,56 @@
+.header
+{
+    color: aqua;
+    display: flex;
+    background-color: black;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    justify-content: center;
+margin: 20px;
+   
+}
+ .logo
+{
+    color: red;
+    width: 100px;
+    border: 1px solid green;
+    font-weight: bold;
+    box-shadow: 0 0 17px red;
+    margin-left: 10px;
+    
+}
+.navbar ul
+{ list-style: none;
+    
+
+}
+.navbar ul li{
+    background-color: rgb(142, 38, 38);
+    width: 140px;
+    height: 60px;
+    
+    border: 1px solid yellow;
+  float: left;
+  text-transform: uppercase;
+  text-align: center;
+ 
+
+}
+ul a
+{
+text-decoration: none;
+color: aqua;
+
+}
+.navbar  ul :hover{
+    background-color: red;
+    color: yellow;
+}
+.navbar ul ul{
+display: none;
+}
+.navbar ul li:hover >ul{
+    display: block;
+    
+    }
