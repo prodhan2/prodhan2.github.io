@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    display: flex;
+     align-items:center;
+     min-width:100vb;
+     min-height: 100vh;
+     background-image: url(pexels-pixabay-531880\ \(1\).jpg) ;
+     justify-content: center;
+    background-position: center;
+    background-size: cover;
+}
+.wrapper{
+   color: white;
+    justify-content: center;
+    width: 50%;
+    background:transparent;
+    border-radius: 10px;
+    border: 4px solid aqua;
+    padding: 30px 40px;
+   backdrop-filter: blur(20px);
+   box-shadow: 0 0 9px red;
+}
+h1{
+text-align: center;
+
+}
+.input_box{
+    background:transparent;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+.input_box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline:none;
+    border: none;
+    border-radius: 40px;
+    border: 3px solid aqua;
+    padding: 20px 45px 20px 20px;
+}
+input::placeholder{
+    color: aqua;
+}
+
+.forgate-remember{
+
+    display: flex;
+    justify-content: space-between;
+    margin:-15px 0 15px;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+    
+}
+button{
+    width: 100%;
+    height: 45px;
+    background:rgb(252, 251, 249);
+    cursor:pointer;
+    border-radius:40px:
+    border-color: aqua;
+    
+}
+.Dont-Have_account{
+    text-align: center;
+margin-top: 20px;
+}
+
+
+.input_box label{
+    margin-top: 20px;
+}
