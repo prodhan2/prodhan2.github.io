@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Portfolio Landing Page</title>
+    <title>SUJAN PRODHAN Portfolio  webpage </title>
+    <!-- *******************boostrap****css***************************** -->
+
+    <!-- ********************jquary css*********************** -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!--************************************** -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
@@ -14,10 +20,10 @@
       <div class="scroll-up-btn">
         <i class="fas fa-angle-up"></i>
       </div>
-      <!-- Header -->
+     <!-- **************************header************************************************** -->
       <nav class="navbar">
         <div class="max-width">
-          <div class="logo"><img src="bangladesh-198_128.gif" height="40px" width="80px" alt="bangladesh"><a href="#"><span> Sujan</span><span>Prodhan</span></a></div>
+          <div data-aos="fade-right" class="logo"><img src="bangladesh-198_128.gif" height="40px" width="80px" alt="bangladesh"><a href="#"><span> Sujan</span><span>Prodhan</span></a></div>
           <ul class="menu">
             <li><a href="#home" class="menu-btn"><strong>Home</strong></a></li>
             <li><a href="#about" class="menu-btn"><strong>About</strong></a></li>
@@ -33,13 +39,13 @@
       </nav>
 
       <!-- Home -->
-      <section class="home" id="home">
+      <section  class="home" id="home">
         <div class="max-width">
-          <div class="home-content">
+          <div  class="home-content">
             <div class="text-1">Hello, This is</div>
             <div class="text-2">Sujan Prodhan</div>
             <div class="text-3">And I'm a <span class="typing"></span></div>
-            <a title="আমাকে হায়ার করুন" href="#">Hire me</a>
+            <a class="hire" title="আমাকে হায়ার করুন" href="#">Hire me</a>
           </div>
         </div>
       </section>
@@ -48,8 +54,8 @@
       <section class="about" id="about">
         <div class="max-width">
           <h2 class="title">About Me</h2>
-          <div class="about-content">
-            <div class="column left">
+          <div  class="about-content">
+            <div data-aos="zoom-out-right" class="column left">
               <img src="https://prodhan2.github.io/PHOTO-G/photo_2023-10-25_01-23-12.jpg" alt="Profile Image 626x626">
             </div>
             <div class="column right">
@@ -65,26 +71,26 @@
         </div>
       </section>
 
-      <!-- Services -->
-      <section class="services" id="services">
+      <!-- Services************************************* -->
+      <section data-aos="fade-down"  class="services" id="services">
         <div class="max-width">
           <h2 class="title">My services</h2>
           <div class="serv-content">
-            <div class="card">
-              <div class="box">
+            <div data-aos="fade-left"  class="card">
+              <div  class="box">
                 <i class="fas fa-laptop-code"></i>
                 <div class="text">Web Design</div>
                 <p>Your Next Web Developer, who is working in Shopify Dropshipping Stores, High Converting Ecommerce stores, Product Page also having Custom code, liquid template design.</p>
               </div>
             </div>
-            <div class="card">
+            <div data-aos="fade-down" class="card">
               <div class="box">
                 <i class="fas fa-user-secret"></i>
                 <div class="text">User Secret</div>
                 <p>I ensures that, there is no sensitive data included in the source code and are stored outside of the project folder. And all the data which is stored by User Secrets is not encrypted.</p>
               </div>
             </div>
-            <div class="card">
+            <div data-aos="fade-right" class="card">
               <div class="box">
                 <i class="fas fa-code"></i>
                 <div class="text">Apps Design</div>
@@ -104,35 +110,32 @@
 
               <div class="text">INTERNSHIP</div>
               <p>
-                <li class="intern">#Company Name "Where You work"</li>
-                <li class="intern">#Company Name "Where You work"</li>
-                <li class="intern">#Company Name "Where You work"</li>
+                <li class="intern">............</li>
+                
               </p>
 
               <br>
               <div class="text">PROJECT</div>
 
               <p>
-                <li class="project">Portfolio (HTML, CSS, js, Bootstraps)</li>
-                <li class="project">eCommerce Website (Shopify liquid-code, HTML, CSS)</li>
-                <li class="project">QuickShop - eCommerce Website (Like Amazon, Flipkart etc.)</li>
-                <li class="project">Fully Responsive Design Email Subscribe form</li>
-                <li class="project">Blog (HTML, CSS, Bootstraps)</li>
-                <li class="project">Currently Working on a Messaging App (Like WhatsApp)</li>
-              </p>
+                <li class="project">Portfolio (HTML, CSS, js)</li>
+                <li class="project">Coursor Animation(HTML, CSS, js)</li>
+                <li class="project">Background Animation(HTML, CSS, js)</li>
+                <li class="project">File searching from big data(HTML, CSS, js)</li>
+                  </p>
 
               <br>
               <div class="text">DEVELOPMENT SKILLS</div>
 
               <p>
-                I'm familiar & work on a daily basis with HTML, CSS, JavaScript, Bootstrap, React js and other modern frameworks.
+                I'm familiar & work on a daily basis with HTML, CSS, JavaScript.
               </p>
               <a href="#" target="blank">Get Educate...</a>
             </div>
             <div class="column right">
               <div class="bars">
                 <div class="info">
-                  <span>Python</span>
+                  <span>C++/C</span>
                   <span>90%</span>
                 </div>
                 <div class="line python"></div>
@@ -160,7 +163,7 @@
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>Bootstraps</span>
+                  <span>Java</span>
                   <span>60%</span>
                 </div>
                 <div class="line bootstraps"></div>
@@ -168,7 +171,7 @@
               <div class="bars">
                 <div class="info">
                   <span>Django</span>
-                  <span>70%</span>
+                  <span>3%</span>
                 </div>
                 <div class="line django"></div>
               </div>
@@ -185,7 +188,7 @@
             <div class="card">
               <div class="box">
                 <img src="https://prodhan2.github.io/PHOTO-G/photo_2023-10-25_01-23-12.jpg" alt="">
-                <div class="text">Ecommerce</div>
+                <div class="text">Bangla SMS-APP</div>
                 <p>#Project Details:- Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               </div>
             </div>
@@ -331,10 +334,19 @@
 
 
 
-
-   <script
-  src="https://app.livechatai.com/embed.js"
-  data-id="clo9q8kbc0006mk0fqkdqmjlh"
-  async defer>
-</script>  </body>
+    
+<!--     
+    ************************************** -->
+    <script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hi i am sujan  prodhan ✌️", message: "How may we help you? Just send us a message now to get assistance.", color: "#FA764F", position: "left", placeholder: "Enter your message", withText: "Write with", viaWhatsapp: "Or write us directly via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Write us", device: "everywhere", logo: "https://d2r80wdbkwti6l.cloudfront.net/B3rhXjnX3BBCgjAyXRODX9iuVAphlZKh.jpg", person: "https://d2r80wdbkwti6l.cloudfront.net/sXsGLYBwpJy7rvVYbx3qIM3kiuf4we3n.jpg",  services: [{"name":"whatsapp","content":"01751032769"},{"name":"telegram","content":"Sujanprodhan"},{"name":"phone","content":"+8801902383808"},{"name":"messenger","content":"prodhan24"},{"name":"sms","content":"01902383808"},{"name":"mail","content":"ru.cse29@gmail.com"}]})</script>
+   
+    <!-- *********************************jquery animation  by sujan prodhan******************************************************** -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  <!-- *****************jquery all version******************************* -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="sound.js"></script>
+</body>
 </html>
+
