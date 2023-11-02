@@ -39,7 +39,7 @@
   .loader img {
     width: 280px;
   }
-  
+  **************scrollbar design sujan prodhan*******************************************
   ::-webkit-scrollbar-thumb {
     border-radius: 12px;
     background: linear-gradient(135deg, #f57308, #fff, rgb(11, 242, 7));
@@ -253,7 +253,7 @@
     margin: 5px 0;
   }
   
-  /* Linear Gradient */
+  /* Linear Gradient ********************************************/
   .home .home-content .text-3 span {
     color: #1e3551;
     background: linear-gradient(135deg, #041d3d, #fff, crimson);
@@ -281,7 +281,7 @@
     animation: pulsate 1s ease-in-out;
   }
   
-  /*  About  */
+  /*  About ************************************************** */
   .about {
     background: radial-gradient(#e1efff, white);
   }
@@ -293,9 +293,6 @@
     -webkit-box-orient: vertical;
   }
   
-  .about .about-content .left {
-    width: 45%;
-  }
   
   .about .about-content .left img {
     height: 400px;
@@ -303,13 +300,16 @@
     object-fit: cover;
     border-radius: 6px;
     box-shadow:2px 3px 12px rgb(2, 230, 242);
+    transition: all 0.7s ease-in-out;
   }
 
   .about .about-content .left img:hover{
 
     box-shadow:2px 3px 12px rgb(57, 4, 251);
-    transform: scale(1.05);
-
+ transform-style: preserve-3d;
+    transform: rotate3d(0.5,1,0,30deg);
+    
+    
   }
   .about .about-content .right {
     width: 55%;
@@ -382,7 +382,7 @@
   
   .services .serv-content .card:hover {
     background:linear-gradient(red,green);
-    color: aqua;
+    color: aqua; transform: rotate3d(0.5,1,0,30deg);
   }
   
   .services .serv-content .card .box {
@@ -481,7 +481,7 @@
   }
   
   .skills .skills-content .right .line {
-    height: 5px;
+    height: 10px;
     width: 100%;
     background: green;
     position: relative;
@@ -517,7 +517,7 @@
   }
   
   .skills-content .right .django::before {
-    width: 70%;
+    width: 3%;
   }
   
   /*  Projects  */
@@ -662,15 +662,16 @@
   }
   
   .contact .right form .name {
-    margin-right: 10px;
+    margin-right: 10px; 
   }
   
   .contact .right form .field input,
   .contact .right form .textarea textarea {
     height: 100%;
     width: 100%;
-    border: 1px solid lightgrey;
-    border-radius: 6px;
+    border: 3px solid rgb(4, 239, 74);
+    border-radius: 11px;
+    
     outline: none;
     padding: 0 15px;
     font-size: 17px;
@@ -950,3 +951,15 @@
       line-height: 38px;
     }
   }
+/* ****************************************** */
+.box i:hover{
+  transform: translate3d(0,0,50px);
+ 
+}
+
+
+/* *************************************************** */
+/* 3d style  of box my protfilio */
+.card:hover{
+  transform: rotate3d(0.5,1,0,30deg);
+}
