@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">    <link rel="stylesheet" href="styles.css"><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="card">
+        <div class="img">
+        <img src="image/1.jpg" alt=""> </div>
+        <div class="infos">
+          <div class="name">
+            <h2>Sujan Prodhan</h2>
+            <h4>University oF Rajshahi</h4>
+          </div>
+          <p class="text">
+            I'm a Front End Developer, follow me to be the first 
+            who see my new work.Currently studying Computer Science and Engineering in Rajshahi University. Besides, I am working on editing Google Maps and various pages. You can say, a content writer, website designer, graphic designer. And finally a programmer. Search "sujan prodhan" you can see all my details. Thank you for reading so carefully."
+          </p>
+          <ul class="stats">
+            <li>
+              <h3>15K</h3>
+              <h4>Views</h4>
+            </li>
+            <li>
+              <h3>82</h3>
+              <h4>Projects</h4>
+            </li>
+            <li>
+              <h3>1.3M</h3>
+              <h4>Followers</h4>
+            </li>
+          </ul>
+          <div class="links">
+            <button class="follow" id="downloadButton">Follow</button>
+            <button class="view" id="downloadButton">View profile</button>
+            
+          </div>
+          <div class="buttons">
+       
+            <button class="primary" onclick="window.location.href='https://m.me/prodhan24'">Meassage-FB</button>
+            <button  class="primary ghost" onclick="window.location.href='https://www.google.com/search?q=sujan+prodhan&oq=sujan+p&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRhAMgYIAhBFGDwyBggDEEUYPDIGCAQQRRg8MgYIBRBFGEEyBggGEEUYQTIGCAcQRRhBqAIAsAIA&sourceid=chrome&ie=UTF-8'">I am in Google</button>
+            <button class="primary ghost" title = "01902383808">Call me</button>
+            <button class="primary ghost" onclick="window.location.href='https://example.com'">Github</button>
+            <button class="primary ghost" onclick="window.location.href='https://t.me/Sujanprodhan'">Meassage-Telegram</button>
+        </div>
+          
+          <div class="skills">
+            <h2>My Skills</h2>
+            <ul>
+                <li>UI / UX</li>
+                <li>Front End Development</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node</li><li>Writter-Book LIST</li>
+            </ul>
+             <a href="#" id="downloadButton">Download File</a>
+            <button class="primary " title = "sujan prodhan webpage......." onclick="window.location.href='https://prodhan2.github.io'">Next_Page</button>
+ 
+    </div>
+
+
+        </div>
+        
+      </div>
+      
+      <script>
+        document.getElementById('downloadButton').addEventListener('click', function() {
+          // Replace 'path/to/your/image.jpg' with the actual path to your image file
+          var imageUrl = '/image/card.png';
+    
+          var a = document.createElement('a');
+          a.href = imageUrl;
+          a.download = 'downloaded_image.jpg';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      </script>
+</body>
+</html>
