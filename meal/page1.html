@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table with Buttons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .download-btn, .view-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .download-btn {
+      background-color: #008CBA;
+      color: white;
+    }
+    
+    .view-btn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    @media screen and (max-width: 600px) {
+      th, td {
+        padding: 6px;
+      }
+    }
+
+    /* Added CSS for animation */
+    tr {
+      opacity: 0;
+      animation: fadeIn 1.0s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CSS for the reload button */
+    footer {
+      text-align: center;
+      padding-top: 17vh;
+      
+      
+    }
+
+    .reload-btn {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100vw;
+    }
+
+    .reload-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th colspan="3">Today: <span id="currentDate"></span> Automatic Update</th>
+  </tr>
+  <tr>
+    <th>Details</th>
+    <th>Download</th>
+    <th>View</th>    
+  </tr>
+  <tr>
+    <td>Daily meal check</td>
+    <td><button class="download-btn" onclick="downloadPNG1()" >Download PNG</button></td>
+    <td><button class="view-btn" onclick="DailyMealCheck()">View</button></td>
+  </tr>
+  <tr>
+    <td>Daily amount check</td>
+    <td><button class="download-btn"  onclick="downloadPNG1()">Download PNG</button></td>
+    <td><button class="view-btn" onclick="AmoutCheck()" >View</button></td>
+  </tr>
+  <tr>
+    <td>Previous Meal Information</td>
+    <td><button class="download-btn"  onclick="error()">Download PNG</button></td>
+    <td><button class="view-btn" onclick="error()" >View</button></td>
+  </tr>
+  <tr>
+    <td>Mess all Contract Info</td>
+    <td><button class="download-btn"   onclick="error()" >Download PNG</button></td>
+    <td><button class="view-btn" onclick="error()">View</button></td>
+  </tr>
+  <tr>
+    <td>About us</td>
+    <td><button class="download-btn"   onclick="error()" >Download PNG</button></td>
+    <td><button class="view-btn" onclick="error()" >View</button></td>
+  </tr>
+</table>
+
+<!-- Footer Section -->
+<footer>
+
+  <style>
+
+
+    .quote-box {
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 50px auto;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid #4CAF50; /* Change border color to green */
+      display: flex; /* Use flexbox */
+      flex-direction: row; /* Display children elements in a row */
+      justify-content: center; /* Horizontally center the content */
+      align-items: center; /* Vertically center the content */
+      height: 100px; /* Set a fixed height */
+  }
+  
+  #quote-text {
+      font-size: 17px;
+      color: #333;
+      font-style: italic;
+  }
+  
+    
+    
+
+</style>
+
+
+
+
+
+<div class="quote-box">
+    <p id="quote-text"></p>
+</div>
+<script>
+    const quotes = [
+    "দুঃখের মধ্য দিয়ে যেমন সুখের পরিচয় পাওয়া যায়, তেমনি পরাজয়ের মধ্য দিয়েই জয়ের সূচনা হয়।",
+    "তুমি যদি জীবনে ভিন্ন কিছু করতে চাও, তাহলে কখনোই ভিড়ের অংশীদার হয়ো না। কারণ ভিড় সাহস দেয়, কিন্তু পরিচয় কেড়ে নেয়।",
+    "সাফল্যের সবচেয়ে বিশেষ বিষয় কি জানো? এটি তাদের প্রতি আকৃষ্ট হয় যারা কঠোর পরিশ্রম করে।",
+    "যারা অপেক্ষা করে তারা ততটা পায় যতটা অন্যরা চেষ্টা না করে চলে যায়।",
+    "তুমি যদি ব্যর্থতার দিকে মনোযোগ না দাও, তবে তুমি কখনই সফলতা পাবে না।",
+    "যে জিনিসগুলি তোমাকে CHALLENGE করে, সেগুলিই তোমাকে CHANGE করে।",
+    "কখনই সংগ্রামকে ভয় করা উচিত নয়, কারণ এটি একটি গল্প, যা সফল হওয়ার পরে সবাইকে বলতে হবে।",
+    "সাফল্যের ফসল এমনি এমনি গজায় না, পরিশ্রমের ঘাম দিয়ে চেষ্টার বীজকে জল দিতে হয়।",
+    "তুমি তোমার গন্তব্য থেকে ততক্ষণ দূরে থাকবে, যতক্ষণ না তার জন্য প্রথম পদক্ষেপ নেবে।",
+    "বৃষ্টির ফোঁটা ছোট, কিন্তু তাদের অবিরাম বৃষ্টি, নদীর বড় বড় স্রোত হয়ে যায়, তেমনি আমাদের ক্ষুদ্র প্রচেষ্টাও, জীবনে বড় পরিবর্তন আনতে পারে।",
+    "জয় ও পরাজয় নির্ভর করে তোমার চিন্তার উপর। মেনে নিলে পরাজয় আর দৃঢ় সংকল্প থাকলে জয়।",
+    "ভাগ্যবান তারা নয় যারা তাদের জীবনে সবকিছু ভাল পায়। ভাগ্যবান তারা যারা যা পায় তা ভাল করে করে নেয়।",
+    "সাহস হারাইও না বন্ধু, কারণ এখনো অনেক পথ বাকি। যারা বলেছে এটা তোমার দ্বারা হবে না, তাদেরও কিছু করে দেখাতে হবে।",
+    "জীবন পাওয়া ভাগ্যের ব্যাপার, মৃত্যু সময়ের ব্যাপার, কিন্তু মৃত্যুর পরেও মানুষের হৃদয়ে বেঁচে থাকাটা কর্মের ব্যাপার।"
+];
+
+const quoteText = document.getElementById('quote-text');
+
+function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+}
+
+function displayRandomQuote() {
+    quoteText.textContent = getRandomQuote();
+}
+
+// Display a new quote every 5 seconds
+setInterval(displayRandomQuote, 8000);  
+
+// Display the first quote immediately when the page loads
+displayRandomQuote();
+
+
+</script>
+  <button class="reload-btn" onclick="reloadPage()">Reload</button>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+<script>
+  var today = new Date();
+  var currentDate = today.getDate() + '-' + (today.getMonth()+1) + '-' + today.getFullYear();
+  document.getElementById("currentDate").innerHTML = currentDate;
+  
+  function AmoutCheck() {
+    window.location.href = 'AmountCheck.html'; // Redirect to the viewer page
+  }
+
+  function error() {
+    window.location.href = '404.html'; // Redirect to the viewer page
+  }
+
+  function DailyMealCheck() {
+    window.location.href = 'MealDaily.html'; // Redirect to the viewer page
+  }
+  function downloadPNG1() {
+    const pdfUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkDjsayoBCDAWflV-JUMebZJB7YW5Q0cbKo98EpPkIbwhhaCeTvkYYR4h0frmRF-8eE2HyYLt2QBzC/pub?gid=1540154098&single=true&output=pdf';
+    
+    fetchPDF(pdfUrl);
+  }
+  function downloadPNG2() {
+    const pdfUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkDjsayoBCDAWflV-JUMebZJB7YW5Q0cbKo98EpPkIbwhhaCeTvkYYR4h0frmRF-8eE2HyYLt2QBzC/pub?gid=1540154098&single=true&output=pdf';
+    
+    fetchPDF(pdfUrl);
+  }
+  function downloadPNG3() {
+    const pdfUrl = 'https://prodhan2.github.io';
+    
+    fetchPDF(pdfUrl);
+  }
+
+  function fetchPDF(url) {
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const fileReader = new FileReader();
+        fileReader.onload = function() {
+          const typedArray = new Uint8Array(this.result);
+          renderPDF(typedArray);
+        };
+        fileReader.readAsArrayBuffer(blob);
+      })
+      .catch(error => console.error('Error fetching PDF:', error));
+  }
+
+  function renderPDF(pdfData) {
+    pdfjsLib.getDocument({ data: pdfData }).promise.then(function(pdf) {
+      for (let i = 1; i <= pdf.numPages; i++) {
+        pdf.getPage(i).then(function(page) {
+          renderPageAsPNG(page, i);
+        });
+      }
+    });
+  }
+
+  function renderPageAsPNG(page, pageNumber) {
+    const scale = 1.5;
+    const viewport = page.getViewport({ scale: scale });
+
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+
+    page.render(renderContext).promise.then(function() {
+      // Convert the canvas to PNG image
+      const image = canvas.toDataURL('image/png');
+      
+      // Create a link element to download the PNG
+      const downloadLink = document.createElement('a');
+      downloadLink.href = image;
+      downloadLink.download = `page_${pageNumber}.png`;
+      downloadLink.click();
+    });
+  }
+
+  // Function to reload the page
+  function reloadPage() {
+    window.location.href = 'index.html';
+  }
+</script>
+</body>
+</html>

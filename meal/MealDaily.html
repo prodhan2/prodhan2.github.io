@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal management system</title>
+    <style>
+        
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .col-0 {
+            background-color: #ffcccc; /* Column 0 color */
+        }
+
+        .col-1 {
+            background-color: #ccffcc; /* Column 1 color */
+        }
+
+        .col-2 {
+            background-color: #ccccff; /* Column 2 color */
+        }
+
+        .col-3 {
+            background-color: #ffffcc; /* Column 3 color */
+        }
+
+        /* Default style for Status column */
+        .col-status {
+            background-color: #ffcccc; /* Default Red color for Status column */
+        }
+
+        /* Additional class for Status column cells that are OFF */
+        .status-off {
+            background-color: #ff0000; /* Red color for OFF status */
+            color: #040202; /* White text for better readability */
+        }
+
+        /* Additional class for Status column cells that are FULL */
+        .status-full {
+            background-color: #00f9f9; /* Green color for FULL status */
+            color: #000000; /* White text for better readability */
+        }
+
+        /* Button container styles */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100vw;
+            background-color: rgb(53, 232, 53);
+        }
+
+        /* Button styles */
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #000;
+            padding: 10px;
+            width: 70%;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: red; /* Red color for the close button */
+        }
+
+        /* Date row style */
+        .date-row th, .date-row td {
+            border: 2px solid black; /* Thicker border for date row */
+            animation: dateRowAnimation 2s infinite alternate;
+        }
+
+        @keyframes dateRowAnimation {
+            0% { background-color: yellow; }
+            100% { background-color: rgb(7, 243, 255); }
+        }
+    </style>
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="popup" id="popup-notification">
+        <span class="close-btn" onclick="closePopup()">✖</span>
+        Check your meal according to the date😊
+    </div>
+    <th colspan="3"><span id="currentDate"></span></th>
+    <div class="button-container">
+        <button id="download-png">Download AS Picture</button> 
+        <button onclick="window.location.href = 'index.html';">Back to Home</button>
+    </div>
+    <div id="data"></div>
+
+    <script>
+        function closePopup() {
+            const popup = document.getElementById('popup-notification');
+            popup.style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to update the date
+           
+            const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkDjsayoBCDAWflV-JUMebZJB7YW5Q0cbKo98EpPkIbwhhaCeTvkYYR4h0frmRF-8eE2HyYLt2QBzC/pub?gid=1252127450&single=true&output=csv';
+
+            fetch(sheetURL)
+                .then(response => response.text())
+                .then(csvText => {
+                    const rows = csvText.split('\n').map(row => row.split(','));
+                    // Extract the date row (A1:F1)
+                    const dateRow = rows[0];
+                    // Extract the range A10:F73, which corresponds to rows 9 to 72 (0-based index)
+                    const rangeRows = rows.slice(9, 73).filter(row => row.length > 1); // filter out any empty rows
+                    displayData(dateRow, rangeRows);
+                })
+                .catch(error => console.error('Error fetching the Google Sheet:', error));
+        });
+
+        function displayData(dateRow, data) {
+            const dataContainer = document.getElementById('data');
+            const table = document.createElement('table');
+            const tbody = document.createElement('tbody');
+
+            // Create the date row
+            const dateTr = document.createElement('tr');
+            dateTr.classList.add('date-row');
+            dateRow.forEach((cellText, index) => {
+                const cellElement = document.createElement('th');
+                cellElement.textContent = cellText;
+                cellElement.classList.add(`col-${index}`);
+                if (index === 3) { // Check if it's the Status column
+                    if (cellText.trim().toUpperCase() === 'OFF') {
+                        cellElement.classList.add('status-off'); // Add class for OFF status
+                    } else if (cellText.trim().toUpperCase() === 'FULL') {
+                        cellElement.classList.add('status-full'); // Add class for FULL status
+                    } else {
+                        cellElement.classList.add('col-status'); // Add default class for Status column
+                    }
+                }
+                dateTr.appendChild(cellElement);
+            });
+            tbody.appendChild(dateTr);
+
+            // Assuming the columns are 🟢 (0), Room (1), Name (2), Status (3)
+            const columns = [0, 1, 2,5]; // Include columns A to F
+
+            data.forEach((row, rowIndex) => {
+                const tr = document.createElement('tr');
+                columns.forEach((colIndex, index) => {
+                    const cellElement = document.createElement(rowIndex === 0 ? 'th' : 'td');
+                    cellElement.textContent = row[colIndex];
+                    cellElement.classList.add(`col-${index}`);
+                    if (index === 3 && rowIndex > 0) { // Check if it's the Status column
+                        if (row[colIndex].trim().toUpperCase() === 'OFF') {
+                            cellElement.classList.add('status-off'); // Add class for OFF status
+                        } else if (row[colIndex].trim().toUpperCase() === 'FULL') {
+                            cellElement.classList.add('status-full'); // Add class for FULL status
+                        } else {
+                            cellElement.classList.add('col-status'); // Add default class for Status column
+                        }
+                    }
+                    tr.appendChild(cellElement);
+                });
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            dataContainer.appendChild(table);
+        }
+
+        document.getElementById('download-png').addEventListener('click', () => {
+            html2canvas(document.body, {
+                onrendered: function(canvas) {
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'page.png';
+                    link.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
