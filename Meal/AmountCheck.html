@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .page {
+      margin-bottom: 10px;
+    }
+    #pdf-viewer {
+      height: 80vh; /* Adjusted height to accommodate header and footer */
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="row">
+      <div class="col text-center mt-3">
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+
+    <!-- PDF Viewer -->
+    <div class="row">
+      <div id="pdf-viewer"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row">
+      <div class="col text-center mt-3 mb-3">
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const pdfViewer = document.getElementById('pdf-viewer');
+
+      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkDjsayoBCDAWflV-JUMebZJB7YW5Q0cbKo98EpPkIbwhhaCeTvkYYR4h0frmRF-8eE2HyYLt2QBzC/pub?gid=1540154098&single=true&output=pdf';
+
+      fetchPDF(url);
+    });
+
+    function fetchPDF(url) {
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          const fileReader = new FileReader();
+          fileReader.onload = function() {
+            const typedArray = new Uint8Array(this.result);
+            renderPDF(typedArray);
+          };
+          fileReader.readAsArrayBuffer(blob);
+        })
+        .catch(error => console.error('Error fetching PDF:', error));
+    }
+
+    function renderPDF(pdfData) {
+      pdfjsLib.getDocument({ data: pdfData }).promise.then(function(pdf) {
+        for (let i = 1; i <= pdf.numPages; i++) {
+          pdf.getPage(i).then(function(page) {
+            renderPage(page);
+          });
+        }
+      });
+    }
+
+    function renderPage(page) {
+      const scale = 1.5;
+      const viewport = page.getViewport({ scale: scale });
+
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+
+      page.render(renderContext).promise.then(function() {
+        const pageDiv = document.createElement('div');
+        pageDiv.classList.add('page');
+        pageDiv.appendChild(canvas);
+        document.getElementById('pdf-viewer').appendChild(pageDiv);
+      });
+    }
+  </script>
+</body>
+</html>

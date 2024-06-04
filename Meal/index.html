@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আলম ছাত্রাবাস মিল ম্যানেজমেন্ট সিস্টেম</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0; /* Added background color */
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    img {
+        width: 50%;
+        height: auto;
+    }
+
+    /* Added button styling */
+    .glass-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Button hover effect */
+    .glass-button:hover {
+        background-color: #45a049;
+    }
+
+    .countdown {
+        display: none; /* Hide the countdown */
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://cdn.dribbble.com/users/2073082/screenshots/4352562/chef.gif" alt="Loader">
+        <button class="glass-button">আলম ছাত্রাবাস মিল ম্যানেজমেন্ট সিস্টেম</button> <!-- Updated button text -->
+    </div>
+    
+    <script>
+        setTimeout(function() {
+            window.location.href = "page1.html"; 
+        }, 2000); // Redirect after 5 seconds
+    </script>
+</body>
+</html>
