@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">    <link rel="stylesheet" href="styles.css"><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+  
+    <div class="card">
+
+
+      
+        <div class="img">
+        <img src="image/1.jpg" alt=""> </div>
+        <div class="infos">
+          <div class="name">
+            <h1>Sujan Prodhan</h1>
+            <h2 class ="animation">University oF Rajshahi</h2>
+          </div>
+          <p class="text">
+            I'm a Front End Developer, follow me to be the first 
+            who see my new work.i Currently studying Computer Science and Engineering in Rajshahi University. Besides, I am working on editing Google Maps and various pages. You can say, a content writer, website designer, graphic designer. And finally a programmer. Search "sujan prodhan" you can see all my details. Thank you for reading so carefully."
+          </p>
+          <ul class="stats">
+            <li>
+              <h3 id="viewsCount">0</h3>
+              <h4>Views</h4>
+            </li>
+            <li>
+              <h3 id="projectsCount">0</h3>
+              <h4 >Projects</h4>
+            </li>
+            <li>
+              <h3 id="followersCount">0</h3>
+              <h4>Followers</h4>
+            </li>
+          </ul>
+          <div  class="links">
+            <button class="follow" ><a href="https://fb.com/prodhan24">Follow</a></button>
+            <button class="view" ><a href="https://prodhan2.github.io">View profile</a></button>
+            
+          </div>
+          <div class="buttons">
+       
+            <button class="primary" onclick="window.location.href='https://m.me/prodhan24'">Meassage-FB</button>
+            <button  class="primary ghost" onclick="window.location.href='https://www.google.com/search?q=sujan+prodhan&oq=sujan+p&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRhAMgYIAhBFGDwyBggDEEUYPDIGCAQQRRg8MgYIBRBFGEEyBggGEEUYQTIGCAcQRRhBqAIAsAIA&sourceid=chrome&ie=UTF-8'">I am in Google</button>
+            <button class="primary ghost" title = "01902383808">Call me</button>
+            <button class="primary ghost" onclick="window.location.href='https://github.com/prodhan2'">Github</button>
+            <button class="primary ghost" onclick="window.location.href='https://t.me/Sujanprodhan'">Meassage-Telegram</button>
+        </div>
+          
+          <div class="skills">
+            <h2>My Skills</h2>
+            <ul>
+                <li>UI / UX</li>
+                <li>Front End Development</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node</li><li color ="green">MY-Book LIST</li>
+            </ul>
+             <div id="downloadButton"><a href="/image/card.png" download>Download ID Card</a></div>
+            <button class="primary " title = "sujan prodhan webpage......." onclick="window.location.href='https://prodhan2.github.io'">Next_Page</button>
+ 
+    </div>
+
+
+        </div>
+        
+      </div>
+   
+
+
+
+
+
+
+
+      <script>
+    
+        function animateCounting(elementId, target, duration) {
+      const start = 0;
+      const startTime = new Date().getTime();
+
+      function updateCounter() {
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(1, elapsedTime / duration);
+        const currentCount = Math.floor(progress * target);
+
+        document.getElementById(elementId).textContent = currentCount;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      }
+
+      updateCounter();
+    }
+
+    // Call the function to start the animations
+    animateCounting('viewsCount', 15000, 9000); // 15K views in 2000 milliseconds (2 seconds)
+    animateCounting('projectsCount', 82, 9000); // 82 projects in 2000 milliseconds (2 seconds)
+    animateCounting('followersCount', 1300000, 9000); // 1.3M followers in 2000 milliseconds (2 seconds)
+      </script>
+</body>
+</html>
