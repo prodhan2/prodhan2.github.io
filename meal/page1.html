@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Table with Buttons</title>
+  <title>Meal system Button</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -124,8 +124,8 @@
   </tr>
   <tr>
     <td>Mess all Contract Info</td>
-    <td><button class="download-btn"   onclick="error()" >Download PNG</button></td>
-    <td><button class="view-btn" onclick="error()">View</button></td>
+    <td><button class="download-btn"   onclick="info1()" >Download PNG</button></td>
+    <td><button class="view-btn" onclick="info2()">View</button></td>
   </tr>
   <tr>
     <td>About us</td>
@@ -226,6 +226,12 @@ displayRandomQuote();
 
   function error() {
     window.location.href = '404.html'; // Redirect to the viewer page
+  }
+  function info1() {
+    window.location.href = '404.html'; // Redirect to the viewer page
+  }
+  function info2() {
+    window.location.href = 'BorderNumber.html'; // Redirect to the viewer page
   }
 
   function DailyMealCheck() {
