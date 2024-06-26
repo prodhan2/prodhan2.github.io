@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Meaning Cards</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .card {
+            margin-top: 20px;
+            padding: 20px;
+            background: #ff69b4;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+            max-width: 300px;
+            margin: auto;
+        }
+        .card div {
+            margin: 10px 0;
+        }
+        .card div span {
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+            color: #0b0101;
+        }
+        .footerr {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #06f2b7;
+            color: #0b0000;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+        .footerr a {
+            color: #010000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Name Meaning Cards</h1>
+        <input type="text" id="nameInput" placeholder="Enter a name">
+        <button onclick="generateCard()">Generate Card</button>
+        <button id="toggleLanguageButton" onclick="toggleLanguage()">Switch to Bengali</button>
+        <div id="card" class="card"></div>
+        <button id="downloadButton" style="display:none;" onclick="downloadCard()">Download Card</button>
+    </div>
+    <footer class="footerr">
+        <a href="https://prodhan2.github.io">Home</a> |
+        <a href="https://prodhan2.github.io">About</a> |
+        <a href="https://fb.com/prodhan2">Facebook</a>
+    </footer>
+
+    <!-- Include html2canvas library -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        const meanings = {
+            en: {
+                a: ["Adorable", "Awesome", "Amazing", "Affectionate", "Adventurous", "Ambitious", "Amiable", "Artistic", "Assertive", "Adaptable"],
+                b: ["Brilliant", "Bold", "Brave", "Bright", "Bubbly", "Balanced", "Beautiful", "Boundless", "Beneficent", "Blissful"],
+                c: ["Charming", "Cheerful", "Confident", "Courageous", "Creative", "Caring", "Clever", "Compassionate", "Considerate", "Chivalrous"],
+                d: ["Dazzling", "Dynamic", "Diligent", "Determined", "Daring", "Delightful", "Devoted", "Discerning", "Driven", "Diplomatic"],
+                e: ["Elegant", "Energetic", "Enthusiastic", "Empathetic", "Efficient", "Endearing", "Exuberant", "Expressive", "Easygoing", "Earnest"],
+                f: ["Friendly", "Fun-loving", "Fearless", "Fascinating", "Faithful", "Forgiving", "Focused", "Frank", "Farsighted", "Felicific"],
+                g: ["Gentle", "Generous", "Gregarious", "Grateful", "Graceful", "Gallant", "Genuine", "Gifted", "Grounded", "Gallant"],
+                h: ["Happy", "Helpful", "Hopeful", "Honest", "Humorous", "Hardworking", "Harmonious", "Healthy", "Humble", "Heroic"],
+                i: ["Irresistible", "Incredible", "Inspiring", "Imaginative", "Intelligent", "Intuitive", "Innovative", "Idealistic", "Independent", "Industrious"],
+                j: ["Joyful", "Jubilant", "Jovial", "Judicious", "Just", "Jaunty", "Jocular", "Jazzy", "Judicious", "Jovial"],
+                k: ["Kissable", "Kind-hearted", "Keen", "Knowledgeable", "Kooky", "Keen-eyed", "Kind", "Kingly", "Kinetic", "Knockout"],
+                l: ["Loving", "Luminous", "Lovely", "Loyal", "Lively", "Logical", "Level-headed", "Light-hearted", "Laudable", "Leader"],
+                m: ["Mesmerizing", "Magnificent", "Marvelous", "Mindful", "Motivated", "Meticulous", "Mature", "Mirthful", "Magnetic", "Modest"],
+                n: ["Noble", "Noteworthy", "Nice", "Nurturing", "Nimble", "Neat", "Nonchalant", "Noble-hearted", "Nifty", "Neighborly"],
+                o: ["Outstanding", "Opulent", "Ornate", "Optimistic", "Open-minded", "Organized", "Original", "Observant", "Outgoing", "Obliging"],
+                p: ["Passionate", "Perfect", "Precious", "Patient", "Persistent", "Perceptive", "Polite", "Pragmatic", "Proactive", "Playful"],
+                q: ["Quintessential", "Quick-witted", "Quiet", "Quaint", "Quick", "Questioning", "Quick-thinking", "Quirky", "Qualified", "Quintessential"],
+                r: ["Romantic", "Radiant", "Remarkable", "Resilient", "Reliable", "Resourceful", "Respectful", "Realistic", "Rational", "Receptive"],
+                s: ["Sweet", "Sensational", "Stunning", "Sincere", "Supportive", "Sympathetic", "Strong", "Selfless", "Smart", "Sociable"],
+                t: ["Tender", "Terrific", "Tantalizing", "Trustworthy", "Talented", "Thoughtful", "Tenacious", "Tolerant", "Thorough", "Tactful"],
+                u: ["Unique", "Unforgettable", "Uplifting", "Understanding", "Unwavering", "Upbeat", "Unassuming", "Unpretentious", "Ultra-modern", "Unstoppable"],
+                v: ["Valentine", "Vibrant", "Vivacious", "Valiant", "Virtuous", "Versatile", "Vigilant", "Visionary", "Vivid", "Venerable"],
+                w: ["Wonderful", "Winsome", "Warm-hearted", "Wise", "Witty", "Welcoming", "Well-rounded", "Wholesome", "Worthy", "Worldly"],
+                x: ["Xenial", "X-factor", "Xenodochial", "Xenophilic", "Xenial-hearted", "Xylophonic", "Xenogeneic", "Xenial-minded", "Xenodochial-spirited", "Xanthic"],
+                y: ["Yearning", "Youthful", "Yummy", "Yielding", "Yare", "Yokefellow", "Yarely", "Yonderly", "Yeomanly", "Yarning"],
+                z: ["Zealous", "Zestful", "Zany", "Zen", "Zappy", "Zephyr", "Zooty", "Zippy", "Zonal", "Zealful"]
+            },
+            bn: {
+                a: ["আকর্ষণীয় (Attractive)", "আশ্চর্যজনক (Amazing)", "অসাধারণ (Awesome)", "অনুরাগী (Affectionate)", "অভিনয়নশীল (Artistic)", "আলোকিত (Ambitious)", "অদ্বিতীয় (Amiable)", "আর্টিস্টিক (Artistic)", "আত্মবিশ্বাসী (Assertive)", "অনুকূল (Adaptable)"],
+                b: ["বৃহৎ (Brilliant)", "বহাদুর (Bold)", "সাহসী (Brave)", "উজ্জ্বল (Bright)", "মিষ্টি (Bubbly)", "সমান (Balanced)", "সুন্দর (Beautiful)", "অসীম (Boundless)", "উপকারী (Beneficent)", "মঙ্গলময় (Blissful)"],
+                c: ["মনোহর (Charming)", "আনন্দময় (Cheerful)", "আত্মবিশ্বাসী (Confident)", "সাহসী (Courageous)", "সৃজনশীল (Creative)", "দায়িত্বশীল (Caring)", "বুদ্ধিমান (Clever)", "দয়ালু (Compassionate)", "মনোযোগশীল (Considerate)", "পুরুষত্বশীল (Chivalrous)"],
+                d: ["দিব্যমণি (Dazzling)", "চমত্কারপ্রদর্শনী (Dynamic)", "সচেতন (Diligent)", "দৃঢ়সংকল্প (Determined)", "প্রবল (Daring)", "আনন্দময় (Delightful)", "ভক্ত (Devoted)", "বিবেকী (Discerning)", "প্রবৃদ্ধি (Driven)", "বিদ্যমান (Diplomatic)"],
+                e: ["মনোহর (Elegant)", "ক্রিয়াশীল (Energetic)", "আনন্দিত (Enthusiastic)", "মনোযোগী (Empathetic)", "দক্ষ (Efficient)", "মনোময় (Endearing)", "উদ্দীপ্ত (Exuberant)", "অভিব্যক্তিশীল (Expressive)", "প্রসন্নমন (Easygoing)", "গভীর (Earnest)"],
+                f: ["মিত্রবতী (Friendly)", "উল্লাসপ্রিয় (Fun-loving)", "নির্ভীক (Fearless)", "মহান্ত (Fascinating)", "বিশ্বাসযোগ্য (Faithful)", "ক্ষমাশীল (Forgiving)", "সঙ্গতিশীল (Focused)", "সততা (Frank)", "দীর্ঘদর্শী (Farsighted)", "আনন্দদায়ী (Felicific)"],
+                g: ["কোমল (Gentle)", "উদার (Generous)", "মহানীয় (Gregarious)", "কৃতজ্ঞ (Grateful)", "সুশীল (Graceful)", "বহুদুরুপ (Gallant)", "সত্য (Genuine)", "দানশীল (Gifted)", "স্থির (Grounded)", "গণমান্য (Gallant)"],
+                h: ["আনন্দিত (Happy)", "সহায়ক (Helpful)", "আশাবাদী (Hopeful)", "সৎ (Honest)", "হাস্যজনক (Humorous)", "শ্রমশীল (Hardworking)", "সান্ত্রিত (Harmonious)", "সুস্থ (Healthy)", "বিনম্র (Humble)", "বীর (Heroic)"],
+                i: ["অপরাজেয় (Irresistible)", "অবিশ্বাস্য (Incredible)", "অনুপ্রেরণামূলক (Inspiring)", "কল্পনাপ্রবণ (Imaginative)", "বুদ্ধিমান (Intelligent)", "স্বজ্ঞাত (Intuitive)", "উদ্ভাবনী (Innovative)", "আদর্শবাদী (Idealistic)", "স্বাধীন (Independent)", "শ্রমশীল (Industrious)"],
+                j: ["আনন্দময় (Joyful)", "জাঁকজমকপূর্ণ (Jubilant)", "হাসিখুশি (Jovial)", "বিচক্ষণ (Judicious)", "ন্যায়বিচারক (Just)", "হাসিখুশি (Jovial)", "রসাত্মক (Jocular)", "ঝকঝকে (Jazzy)", "আনন্দময় (Jaunty)", "বিচক্ষণ (Judicious)"],
+                k: ["চুমু খাওয়ার যোগ্য (Kissable)", "সদয় (Kind-hearted)", "তীক্ষ্ণ (Keen)", "জ্ঞানী (Knowledgeable)", "বোকা (Kooky)", "তীক্ষ্ণদৃষ্টি (Keen-eyed)", "সদয় (Kind)", "রাজকীয় (Kingly)", "গতিশীল (Kinetic)", "চমত্কার (Knockout)"],
+                l: ["ভালবাসার (Loving)", "উজ্জ্বল (Luminous)", "প্রিয় (Lovely)", "বিশ্বস্ত (Loyal)", "প্রাণবন্ত (Lively)", "যৌক্তিক (Logical)", "সংযমী (Level-headed)", "হাসিখুশি (Light-hearted)", "প্রশংসনীয় (Laudable)", "নেতা (Leader)"],
+                m: ["মুগ্ধকর (Mesmerizing)", "মহান (Magnificent)", "অসাধারণ (Marvelous)", "সচেতন (Mindful)", "প্রেরণাদায়ক (Motivated)", "অতিবৃদ্ধি (Meticulous)", "পরিপক্ক (Mature)", "আনন্দময় (Mirthful)", "চুম্বকীয় (Magnetic)", "মৃদু (Modest)"],
+                n: ["নম্র (Noble)", "গুরুত্বপূর্ণ (Noteworthy)", "ভাল (Nice)", "পালনকারী (Nurturing)", "চটপটে (Nimble)", "পরিপাটি (Neat)", "অনীহা (Nonchalant)", "উদারহৃদয় (Noble-hearted)", "চটপটে (Nifty)", "প্রতিবেশী (Neighborly)"],
+                o: ["অসাধারণ (Outstanding)", "সমৃদ্ধ (Opulent)", "সুশোভিত (Ornate)", "আশাবাদী (Optimistic)", "উন্মুক্তমনা (Open-minded)", "সংগঠিত (Organized)", "মূল (Original)", "পর্যবেক্ষক (Observant)", "বহির্মুখী (Outgoing)", "সহানুভূতিশীল (Obliging)"],
+                p: ["উত্সাহী (Passionate)", "নিখুঁত (Perfect)", "মূল্যবান (Precious)", "ধৈর্যশীল (Patient)", "অবিচলিত (Persistent)", "দূরদর্শী (Perceptive)", "ভদ্র (Polite)", "বাস্তববাদী (Pragmatic)", "প্রতিক্রিয়াশীল (Proactive)", "খেলাধুলাপূর্ণ (Playful)"],
+                q: ["রোমান্টিক (Romantic)", "দ্রুতবুদ্ধি (Quick-witted)", "শান্ত (Quiet)", "অদ্ভুত (Quaint)", "দ্রুত (Quick)", "প্রশ্নকারী (Questioning)", "দ্রুত চিন্তাশীল (Quick-thinking)", "বিরল (Quirky)", "যোগ্য (Qualified)", "মূল্যবান (Quintessential)"],
+                r: ["রোমান্টিক (Romantic)", "আলোকময় (Radiant)", "অসাধারণ (Remarkable)", "দৃঢ় (Resilient)", "বিশ্বস্ত (Reliable)", "সমৃদ্ধ (Resourceful)", "শ্রদ্ধালু (Respectful)", "বাস্তববাদী (Realistic)", "তার্কিক (Rational)", "গ্রহণশীল (Receptive)"],
+                s: ["মিষ্টি (Sweet)", "সন্মোহক (Sensational)", "চমৎকার (Stunning)", "অকৃত্রিম (Sincere)", "সমর্থনপূর্ণ (Supportive)", "সমবেত (Sympathetic)", "শক্তিশালী (Strong)", "অস্বার্থ (Selfless)", "স্মার্ট (Smart)", "সমাজসাত্ত্বিক (Sociable)"],
+                t: ["কোমল (Tender)", "অত্যধিক (Terrific)", "মনোমন্তব্য (Tantalizing)", "বিশ্বাসযোগ্য (Trustworthy)", "দক্ষ (Talented)", "বিচারশীল (Thoughtful)", "অটল (Tenacious)", "ধৈর্যশীল (Tolerant)", "সম্পূর্ণ (Thorough)", "বিনয়ী (Tactful)"],
+                u: ["অনন্য (Unique)", "অসামন্য (Unforgettable)", "উত্থানমূলক (Uplifting)", "বোঝাবুঝি (Understanding)", "অপচ্যুত (Unwavering)", "উদ্বোধনমূলক (Upbeat)", "বিনীত (Unassuming)", "প্রতিশ্রুত (Unpretentious)", "অতি-আধুনিক (Ultra-modern)", "অপ্রতিরোধ্য (Unstoppable)"],
+                v: ["প্রিয়তম (Valentine)", "জীবন্ত (Vibrant)", "প্রাণপ্রদ (Vivacious)", "বীর (Valiant)", "ধর্মনিরাপদ (Virtuous)", "বহুমুখী (Versatile)", "জাগরূক (Vigilant)", "দৃষ্টিধারক (Visionary)", "চমকপ্রদ (Vivid)", "শ্রদ্ধায়ী (Venerable)"],
+                w: ["অসাধারণ (Wonderful)", "আকর্ষণীয় (Winsome)", "হৃদয়গহন (Warm-hearted)", "জ্ঞানী (Wise)", "বিদগ্ধ (Witty)", "আদরণীয় (Welcoming)", "ভাল দৃষ্টিতে (Well-rounded)", "সুস্থ (Wholesome)", "মূল্যবান (Worthy)", "পৃথিবীজুড়ে (Worldly)"],
+                x: ["জেনিয়াল (Xenial)", "এক্স-ফ্যাক্টর (X-factor)", "জেনোডোকিয়াল (Xenodochial)", "জেনোফিলিক (Xenophilic)", "জেনিয়াল-হৃদয় (Xenial-hearted)", "জ্যালোফোনিক (Xylophonic)", "জেনোজেনিক (Xenogeneic)", "জেনিয়াল-মনোযোগশীল (Xenial-minded)", "জেনোডোকিয়াল-প্রাণতাল (Xenodochial-spirited)", "কাশ্মীর (Xanthic)"],
+                y: ["কামনা (Yearning)", "যৌবন্ময় (Youthful)", "সুস্বাদু (Yummy)", "শান্ত (Yielding)", "তৈরি (Yare)", "জোকফেলো (Yokefellow)", "অতি আনন্দময় (Yarely)", "দূরে (Yonderly)", "মুকুটধারী (Yeomanly)", "অভিনয় (Yarning)"],
+                z: ["উদ্রেকপ্রদ (Zealous)", "উত্সাহী (Zestful)", "অদ্ভুত (Zany)", "ধ্যান (Zen)", "তীব্র (Zappy)", "ভাতি (Zephyr)", "জুটি (Zooty)", "সুস্থ (Zippy)", "অঞ্চল (Zonal)", "উত্সাহবতী (Zealful)"]
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function getRandomMeaning(character) {
+            const meaningsList = meanings[currentLanguage][character];
+            const randomIndex = Math.floor(Math.random() * meaningsList.length);
+            return meaningsList[randomIndex];
+        }
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'bn' : 'en';
+            document.getElementById('toggleLanguageButton').innerText = currentLanguage === 'en' ? 'Switch to Bengali' : 'Switch to English';
+            generateCard();
+        }
+
+        function generateCard() {
+            const nameInput = document.getElementById('nameInput').value.toLowerCase();
+            const cardContainer = document.getElementById('card');
+            cardContainer.innerHTML = ''; // Clear previous card
+            if (nameInput.trim() === '') return;
+
+            const nameTitle = document.createElement('div');
+            nameTitle.innerHTML = `<h2>${nameInput.toUpperCase()}</h2>`;
+            cardContainer.appendChild(nameTitle);
+
+            for (let char of nameInput) {
+                if (meanings[currentLanguage][char]) {
+                    const charDiv = document.createElement('div');
+                    const meaning = getRandomMeaning(char);
+                    charDiv.innerHTML = `<span>${char.toUpperCase()}</span>: ${meaning}`;
+                    cardContainer.appendChild(charDiv);
+                }
+            }
+
+            const footer = document.createElement('div');
+            footer.className = 'footer';
+            footer.innerHTML = 'Powered by Sujan Prodhan RU.CSE    <br> prodhan2.gitub.io';
+         
+            cardContainer.appendChild(footer);
+
+            document.getElementById('downloadButton').style.display = 'block';
+        }
+
+        function downloadCard() {
+            const card = document.getElementById('card');
+            html2canvas(card, { scale: 2 }).then(canvas => { // Added scale option for higher resolution
+                const link = document.createElement('a');
+                link.download = `Name_Meaning_Card.png`;
+                link.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+                link.click();
+            });
+        }
+        
+    </script>
+</body>
+</html>
