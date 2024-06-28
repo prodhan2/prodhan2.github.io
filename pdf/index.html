@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"], button {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .progress {
+            width: 0;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+
+        .message {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Converter</h1>
+        <input type="file" id="pdfFile" accept=".pdf">
+        <button id="convertToWord">Convert to Word</button>
+        <button id="convertToTxt">Convert to TXT</button>
+        <button id="convertToPng">Convert to PNG</button>
+        <button id="convertToMp3">Convert to MP3</button>
+        <button id="convertToPptx">Convert to PPTX</button>
+        <div class="progress-bar">
+            <div class="progress" id="progress">0%</</div>
+        </div>
+        <div class="message" id="message">
+            <p>Thanks for downloading -- sujan prodhan ru.cse</p>
+            <a href="https://prodhan2.github.io" target="_blank">Portfolio</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.3.1/pptxgen.min.js"></script>
+    <script>
+        document.getElementById('convertToWord').addEventListener('click', function() {
+            convertTo('docx');
+        });
+
+        document.getElementById('convertToTxt').addEventListener('click', function() {
+            convertTo('txt');
+        });
+
+        document.getElementById('convertToPng').addEventListener('click', function() {
+            convertTo('png');
+        });
+
+        document.getElementById('convertToMp3').addEventListener('click', function() {
+            convertTo('mp3');
+        });
+
+        document.getElementById('convertToPptx').addEventListener('click', function() {
+            convertTo('pptx');
+        });
+
+        function updateProgress(progress) {
+            const progressBar = document.querySelector('.progress-bar');
+            const progressElement = document.getElementById('progress');
+            progressBar.style.display = 'block';
+            progressElement.style.width = progress + '%';
+            progressElement.textContent = progress + '%';
+        }
+
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+        }
+
+        function convertTo(format) {
+            let fileInput = document.getElementById('pdfFile');
+            let file = fileInput.files[0];
+
+            if (!file || file.type !== 'application/pdf') {
+                alert('Please select a valid PDF file.');
+                return;
+            }
+
+            let reader = new FileReader();
+
+            reader.onload = function() {
+                let pdfData = new Uint8Array(reader.result);
+                updateProgress(10);
+
+                switch (format) {
+                    case 'docx':
+                        convertToDocx(pdfData);
+                        break;
+                    case 'txt':
+                        convertToTxt(pdfData);
+                        break;
+                    case 'png':
+                        convertToPng(pdfData);
+                        break;
+                    case 'mp3':
+                        convertToMp3(pdfData);
+                        break;
+                    case 'pptx':
+                        convertToPptx(pdfData);
+                        break;
+                    default:
+                        alert('Unsupported format.');
+                        updateProgress(0);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        function convertToDocx(pdfData) {
+            // Example placeholder: actual implementation requires a library like pdf2docx or similar
+            alert('Conversion to Word (docx) is not implemented.');
+            updateProgress(0);
+        }
+
+        function convertToTxt(pdfData) {
+            pdfjsLib.getDocument(pdfData).promise.then(function(pdf) {
+                let maxPages = pdf.numPages;
+                let countPromises = [];
+                for (let j = 1; j <= maxPages; j++) {
+                    countPromises.push(pdf.getPage(j).then(function(page) {
+                        return page.getTextContent().then(function(textContent) {
+                            return textContent.items.map(item => item.str).join(' ');
+                        });
+                    }));
+                }
+                Promise.all(countPromises).then(function(texts) {
+                    let finalText = texts.join('\n');
+                    let blob = new Blob([finalText], { type: 'text/plain' });
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'document.txt';
+                    link.click();
+                    updateProgress(100);
+                    setTimeout(() => {
+                        updateProgress(0);
+                        showMessage();
+                    }, 2000);
+                });
+            });
+        }
+
+        function convertToPng(pdfData) {
+            pdfjsLib.getDocument(pdfData).promise.then(function(pdf) {
+                pdf.getPage(1).then(function(page) {
+                    let viewport = page.getViewport({ scale: 1.5 });
+                    let canvas = document.createElement('canvas');
+                    let context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    let renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+
+                    page.render(renderContext).promise.then(function() {
+                        let imageURL = canvas.toDataURL('image/png');
+                        addWatermark(canvas, 'Powered by sujan prodhan ru.cse  https://prodhan2.github.io');
+                        imageURL = canvas.toDataURL('image/png');
+
+                        let a = document.createElement('a');
+                        a.href = imageURL;
+                        a.download = 'page.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        updateProgress(100);
+                        setTimeout(() => {
+                            updateProgress(0);
+                            showMessage();
+                        }, 2000);
+                    });
+                });
+            });
+        }
+
+        function convertToMp3(pdfData) {
+            pdfjsLib.getDocument(pdfData).promise.then(function(pdf) {
+                let maxPages = pdf.numPages;
+                let countPromises = [];
+                for (let j = 1; j <= maxPages; j++) {
+                    countPromises.push(pdf.getPage(j).then(function(page) {
+                        return page.getTextContent().then(function(textContent) {
+                            return textContent.items.map(item => item.str).join(' ');
+                        });
+                    }));
+                }
+                Promise.all(countPromises).then(function(texts) {
+                    let finalText = texts.join('\n');
+                    let utterance = new SpeechSynthesisUtterance(finalText);
+                    utterance.lang = 'en-US';
+
+                    utterance.onend = function() {
+                        alert('Speech synthesis completed.');
+                        updateProgress(100);
+                        setTimeout(() => {
+                            updateProgress(0);
+                            showMessage();
+                        }, 2000);
+                    };
+
+                    updateProgress(50);
+                    speechSynthesis.speak(utterance);
+                });
+            });
+        }
+
+        function convertToPptx(pdfData) {
+            pdfjsLib.getDocument(pdfData).promise.then(function(pdf) {
+                let pptx = new PptxGenJS();
+                let maxPages = pdf.numPages;
+                let countPromises = [];
+
+                for (let j = 1; j <= maxPages; j++) {
+                    countPromises.push(pdf.getPage(j).then(function(page) {
+                        let viewport = page.getViewport({ scale: 1.5 });
+                        let canvas = document.createElement('canvas');
+                        let context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        let renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+
+                        return page.render(renderContext).promise.then(function() {
+                            let dataURL = canvas.toDataURL('image/png');
+                            pptx.addSlide().addImage({ data: dataURL, x: 0.5, y: 0.5, w: 8.5, h: 5.5 });
+                            updateProgress((j / maxPages) * 100);
+                        });
+                    }));
+                }
+
+                Promise.all(countPromises).then(function() {
+                    pptx.writeFile({ fileName: 'presentation.pptx' }).then(() => {
+                        updateProgress(100);
+                        setTimeout(() => {
+                            updateProgress(0);
+                            showMessage();
+                        }, 2000);
+                    });
+                });
+            });
+        }
+
+        function addWatermark(canvas, text) {
+            let context = canvas.getContext('2d');
+            context.font = '14px Arial';
+            context.fillStyle = 'rgba(0, 0, 0, 0.4)';
+            context.fillText(text, 20, canvas.height - 20); // Adjust position as needed
+        }
+    </script>
+</body>
+</html>
