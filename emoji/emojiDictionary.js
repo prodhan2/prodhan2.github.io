@@ -382,7 +382,41 @@ const emojiDictionary = {
     "💘": { name: "Heart with arrow", description: "A heart with an arrow through it, symbolizing romantic love or attraction." },
     "💝": { name: "Heart with ribbon", description: "A heart with a ribbon, indicating a gift or appreciation." },
     "💞": { name: "Revolving hearts", description: "Two hearts circling each other, indicating mutual affection or love." },
-    "💟": { name: "Heart decoration", description: "A decorative heart, often used in various contexts of love or affection." }
+    "💟": { name: "Heart decoration", description: "A decorative heart, often used in various contexts of love or affection." },
+       "🤟": { name: "I love you", description: "The gesture for 'I love you', often used to express affection or love." },
+    "😊": { name: "Smiling face", description: "A smiling face with smiling eyes, conveying happiness or positivity." },
+    "🌞": { name: "Sun", description: "A bright sun with rays, symbolizing warmth, light, and energy." },
+    "🍕": { name: "Pizza", description: "A slice of pizza, a popular food item enjoyed globally." },
+    "🎉": { name: "Party popper", description: "A colorful party popper, used to celebrate joyous occasions and events." },
+    "📚": { name: "Books", description: "A stack of books, representing knowledge, learning, and education." },
+    "🎸": { name: "Guitar", description: "An electric guitar, a musical instrument used in various genres of music." },
+    "⚽": { name: "Soccer ball", description: "A traditional soccer ball used in the sport of football (soccer)." },
+    "🚀": { name: "Rocket", description: "A rocket blasting off into space, symbolizing exploration, innovation, and progress." },
+    "🌈": { name: "Rainbow", description: "A colorful arc in the sky after rain, symbolizing diversity, hope, and beauty." },
+    "🐱": { name: "Cat face", description: "The face of a cat, often used to represent cats or pet animals." },
+    "🦄": { name: "Unicorn", description: "A mythical unicorn with a spiral horn, symbolizing magic, rarity, and fantasy." },
+    "🌍": { name: "Earth globe Europe-Africa", description: "A globe showing Europe and Africa, representing the Earth's continents." },
+    "🌎": { name: "Earth globe Americas", description: "A globe showing the Americas, representing the Earth's continents." },
+    "🌏": { name: "Earth globe Asia-Australia", description: "A globe showing Asia and Australia, representing the Earth's continents." },
+    
+    "💌": { name: "Love letter", description: "A love letter with a heart seal, indicating affectionate communication." },
+    "💓": { name: "Beating heart", description: "A pink heart with lines indicating it is beating, symbolizing love or excitement." },
+    "💕": { name: "Two hearts", description: "Two pink hearts side by side, indicating romantic love or affection between two people." },
+    "💖": { name: "Sparkling heart", description: "A sparkling heart, symbolizing love, admiration, or appreciation." },
+    "💗": { name: "Growing heart", description: "A pink heart with lines indicating it is growing in size, symbolizing growing affection or love." },
+    "💘": { name: "Heart with arrow", description: "A heart with an arrow through it, symbolizing romantic love or attraction." },
+    "💙": { name: "Blue heart", description: "A blue heart, representing peace, trust, loyalty, and harmony." },
+    "💚": { name: "Green heart", description: "A green heart, symbolizing growth, renewal, and balance." },
+    "💛": { name: "Yellow heart", description: "A yellow heart, symbolizing happiness, positivity, and friendship." },
+    "💜": { name: "Purple heart", description: "A purple heart, symbolizing spirituality, creativity, and dignity." },
+    "🧡": { name: "Orange heart", description: "An orange heart, symbolizing warmth, energy, and enthusiasm." },
+    "🤎": { name: "Brown heart", description: "A brown heart, symbolizing stability, support, and grounding." },
+    "🖤": { name: "Black heart", description: "A black heart, often used ironically or to symbolize sorrow, darkness, or morbidity." },
+    "🤍": { name: "White heart", description: "A white heart, symbolizing purity, innocence, and cleanliness." },
+    "❤️‍🔥": { name: "Heart on fire", description: "A heart on fire, symbolizing intense love, passion, or desire." },
+    "❤️‍🩹": { name: "Mended heart", description: "A heart with bandages wrapped around it, symbolizing healing or recovery from heartache." }
+
+  
 
 
   
