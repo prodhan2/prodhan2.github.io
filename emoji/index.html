@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-bottom: 80px; /* To ensure content is not hidden behind the footer */
+        }
+        #search-box {
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .copy-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%23000"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6a2 2 0 012 2v10a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>');
+            background-size: cover;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .copy-success {
+            background-color: green;
+        }
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        footer button:hover {
+            background-color: #555;
+        }
+        .powered-by {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        #piechart {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .interest-buttons {
+            margin-top: 20px;
+        }
+        .interest-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #copy-button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="emojiDictionary.js"></script>
+</head>
+<body>
+    <h1>Emoji Dictionary</h1>
+    <input type="text" id="search-box" placeholder="Enter emoji">
+    <button id="search-button">Search</button>
+    <div id="result"></div>
+    <div id="piechart"></div>
+    <div class="interest-buttons">
+        <button id="interested-button">Interested</button>
+        <button id="not-interested-button">Not Interested</button>
+    </div>
+    <footer>
+        <button onclick="location.href='#'">Home</button>
+        <button onclick="location.href='#'">About</button>
+        <button onclick="location.href='https://www.facebook.com'">Facebook</button>
+        <div class="powered-by">Powered by Sujan Prodhan</div>
+    </footer>
+
+    <script>
+        let interestedCount = 10;
+        let notInterestedCount = 10;
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Interest', 'Count'],
+                ['Interested', interestedCount],
+                ['Not Interested', notInterestedCount]
+            ]);
+
+            var options = {
+                title: 'Interest in Emoji',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function updateRandomCounts() {
+            interestedCount = Math.floor(Math.random() * 100);
+            notInterestedCount = Math.floor(Math.random() * 100);
+            drawChart();
+        }
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            const emoji = document.getElementById('search-box').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (emojiDictionary[emoji]) {
+                const { name, description } = emojiDictionary[emoji];
+
+                // Display emoji description
+                resultDiv.innerHTML = `<strong>${emoji}</strong>: ${name}<br>${description}<br>
+                                       <button id="copy-button" data-description="${description}">Copy Description <span class="copy-icon"></span></button>`;
+
+                // Reset interest counts
+                interestedCount = 10;
+                notInterestedCount = 10;
+                drawChart();
+
+                // Add copy button event listener
+                document.getElementById('copy-button').addEventListener('click', function() {
+                    const description = this.getAttribute('data-description');
+                    navigator.clipboard.writeText(description)
+                        .then(() => {
+                            this.querySelector('.copy-icon').classList.add('copy-success');
+                            setTimeout(() => {
+                                this.querySelector('.copy-icon').classList.remove('copy-success');
+                            }, 1000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy description: ', err);
+                        });
+                });
+            } else {
+                resultDiv.textContent = 'Emoji not found in dictionary';
+                document.getElementById('piechart').innerHTML = ''; // Clear chart if emoji not found
+            }
+        });
+
+        document.getElementById('interested-button').addEventListener('click', () => {
+            interestedCount++;
+            drawChart();
+        });
+
+        document.getElementById('not-interested-button').addEventListener('click', () => {
+            notInterestedCount++;
+            drawChart();
+        });
+
+        // Randomly update the chart every 5 seconds
+        setInterval(updateRandomCounts, 5000);
+    </script>
+</body>
+</html>
