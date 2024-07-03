@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prodhan secure Notes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    input, textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .toggle-link {
+      color: #007BFF;
+      cursor: pointer;
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+    }
+    .note-list {
+      margin-top: 20px;
+    }
+    .note-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .note-actions {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .notification.show {
+      opacity: 1;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .footer button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .footer button:focus {
+      outline: none;
+    }
+    .footer button:hover {
+      text-decoration: underline;
+    }
+    .footer .powered-by {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0 20px;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      .note-item {
+        padding: 8px;
+      }
+      .footer {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer .footer-links {
+        margin-bottom: 10px;
+      }
+      .footer .powered-by {
+        margin: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pro. Notes</h1>
+    <div id="register-section">
+      <input type="text" id="register-username" placeholder="Create Username">
+      <input type="password" id="register-password" placeholder="Create Password">
+      <button onclick="register()">Register</button>
+      <span class="toggle-link" onclick="toggleSection('login')">Already have an account? Login</span>
+    </div>
+    <div id="login-section" style="display:none;">
+      <input type="text" id="login-username" placeholder="Enter Username">
+      <input type="password" id="login-password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
+      <span class="toggle-link" onclick="toggleSection('register')">Don't have an account? Register</span>
+    </div>
+    <div id="note-section" style="display:none;">
+      <textarea id="note" placeholder="Write your note here..."></textarea>
+      <button onclick="saveNote()">Save Note</button>
+      <button onclick="logout()">Logout</button>
+      <div id="note-list" class="note-list"></div>
+    </div>
+  </div>
+  <div id="notification" class="notification"></div>
+  <div class="footer">
+    <div class="footer-links">
+  <button onclick="window.location.href = 'https://prodhan2.github.io';">Home</button>
+  <button onclick="window.location.href = 'https://prodhan2.github.io';">About</button>
+  <button onclick="vibrateAndNavigate('share')">Share</button>
+</div>
+    <span class="powered-by">Powered by Sujan Prodhan</span>
+  </div>
+  <script>
+    function toggleSection(section) {
+      document.getElementById('register-section').style.display = section === 'register' ? 'block' : 'none';
+      document.getElementById('login-section').style.display = section === 'login' ? 'block' : 'none';
+    }
+
+    function vibrateAndNavigate(page) {
+      navigator.vibrate(100);
+      showNotification(page.charAt(0).toUpperCase() + page.slice(1) + ' button clicked');
+      // Add navigation logic here if needed
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.innerText = message;
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    function register() {
+      const username = document.getElementById('register-username').value;
+      const password = document.getElementById('register-password').value;
+      if (username && password) {
+        localStorage.setItem(username, password);
+        showNotification('Registration successful!');
+        toggleSection('login');
+      } else {
+        showNotification('Please fill out both fields.');
+      }
+    }
+
+    function login() {
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const storedPassword = localStorage.getItem(username);
+      if (storedPassword && password === storedPassword) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('note-section').style.display = 'block';
+        loadNotes(username);
+        showNotification('Login successful!');
+      } else {
+        showNotification('Incorrect username or password.');
+      }
+    }
+
+    function saveNote() {
+      const username = document.getElementById('login-username').value;
+      const note = document.getElementById('note').value;
+      const noteId = new Date().getTime();
+      const timestamp = new Date().toLocaleString();
+      const userNotes = JSON.parse(localStorage.getItem(username + '-notes')) || [];
+      userNotes.push({ id: noteId, text: note, timestamp });
+      localStorage.setItem(username + '-notes', JSON.stringify(userNotes));
+      document.getElementById('note').value = '';
+      loadNotes(username);
+      showNotification('Note saved.');
+    }
+
+    function loadNotes(username) {
+      const userNotes = JSON.parse(localStorage.getItem(username + '-notes')) || [];
+      
+      // Sort notes by timestamp in descending order (newest first)
+      userNotes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      
+      const noteList = document.getElementById('note-list');
+      noteList.innerHTML = '';
+      
+      userNotes.forEach(note => {
+        const noteItem = document.createElement('div');
+        noteItem.className = 'note-item';
+        const linesToShow = 3;
+        const textLines = note.text.split('\n');
+        const displayText = textLines.slice(0, linesToShow).join('\n');
+        const remainingText = textLines.slice(linesToShow).join('\n');
+        noteItem.innerHTML = `
+          <p>${displayText}</p>
+          <p><small>${note.timestamp}</small></p>
+          ${remainingText ? `<button onclick="expandNote('${note.id}')">Read More</button>` : ''}
+          <div id="note-${note.id}" style="display: none;">${remainingText}</div>
+          <div class="note-actions">
+            <button onclick="editNote('${username}', ${note.id})"><i class="fas fa-edit"></i></button>
+            <button onclick="deleteNote('${username}', ${note.id})"><i class="fas fa-trash"></i></button>
+            <button onclick="copyNote('${note.text}')"><i class="fas fa-copy"></i></button>
+            <button onclick="shareNote('${note.text}')"><i class="fas fa-share"></i></button>
+          </div>
+        `;
+        noteList.appendChild(noteItem);
+      });
+    }
+
+    function expandNote(noteId) {
+      const noteDiv = document.getElementById(`note-${noteId}`);
+      noteDiv.style.display = 'block';
+      const expandButton = noteDiv.previousElementSibling.querySelector('button');
+      expandButton.style.display = 'none';
+    }
+
+    function editNote(username, noteId) {
+      const userNotes = JSON.parse(localStorage.getItem(username + '-notes')) || [];
+      const note = userNotes.find(note => note.id === noteId);
+      if (note) {
+        document.getElementById('note').value = note.text;
+        deleteNote(username, noteId);
+      }
+    }
+
+    function deleteNote(username, noteId) {
+      let userNotes = JSON.parse(localStorage.getItem(username + '-notes')) || [];
+      userNotes = userNotes.filter(note => note.id !== noteId);
+      localStorage.setItem(username + '-notes', JSON.stringify(userNotes));
+      loadNotes(username);
+      showNotification('Note deleted.');
+    }
+
+    function copyNote(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showNotification('Note copied successfully.');
+      }).catch(err => {
+        showNotification('Failed to copy note.');
+      });
+    }
+
+    function shareNote(text) {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Note',
+          text: text,
+        }).then(() => {
+          showNotification('Note shared successfully.');
+        }).catch(err => {
+          showNotification('Failed to share note.');
+        });
+      } else {
+        showNotification('Web Share API not supported.');
+      }
+    }
+
+    function logout() {
+      document.getElementById('note-section').style.display = 'none';
+      document.getElementById('login-section').style.display = 'block';
+      document.getElementById('login-username').value = '';
+      document.getElementById('login-password').value = '';
+      localStorage.removeItem('active-user');
+      showNotification('Logged out successfully.');
+    }
+
+    // Check if active user exists
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeUser = localStorage.getItem('active-user');
+      if (activeUser) {
+        document.getElementById('register-section').style.display = 'none';
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('note-section').style.display = 'block';
+        loadNotes(activeUser);
+      }
+    });
+
+  </script>
+</body>
+</html>
