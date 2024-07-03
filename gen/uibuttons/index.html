@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphism Soft-UI CSS Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .generator {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .preview {
+            width: 150px;
+            height: 150px;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            box-shadow: 7px 7px 17px #6e6e6e, -7px -7px 17px #ffffff;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .controls label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .controls input[type="range"] {
+            width: 60%;
+        }
+
+        .controls input[type="color"],
+        .controls input[type="range"] {
+            margin-left: 10px;
+        }
+
+        .shapes {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .shapes button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .shapes button:hover {
+            background-color: #0056b3;
+        }
+
+        #copy {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #copy:hover {
+            background-color: #0056b3;
+        }
+
+        #cssOutput {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup i {
+            margin-right: 10px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .footer button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .footer button:hover {
+            color: #ffeb3b;
+        }
+
+        .footer .footer-text {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .controls label {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls input[type="range"] {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .shapes {
+                flex-direction: column;
+            }
+
+            .shapes button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neumorphism Soft-UI CSS Generator</h1>
+        <div class="generator">
+            <div class="preview" id="preview"></div>
+            <div class="controls">
+                <label>
+                    Pick a color:
+                    <input type="color" id="color" value="#e0e0e0">
+                </label>
+                <label>
+                    Size:
+                    <input type="range" id="size" min="50" max="300" value="150">
+                </label>
+                <label>
+                    Radius:
+                    <input type="range" id="radius" min="0" max="50" value="25">
+                </label>
+                <label>
+                    Distance:
+                    <input type="range" id="distance" min="0" max="30" value="7">
+                </label>
+                <label>
+                    Intensity:
+                    <input type="range" id="intensity" min="0" max="30" value="17">
+                </label>
+                <label>
+                    Blur:
+                    <input type="range" id="blur" min="0" max="30" value="17">
+                </label>
+                <div class="shapes">
+                    <button data-shape="square">Square</button>
+                    <button data-shape="rounded">Rounded</button>
+                    <button data-shape="circle">Circle</button>
+                </div>
+                <button id="copy">Copy CSS</button>
+                <pre id="cssOutput"></pre>
+            </div>
+        </div>
+        <div class="popup" id="popup"><i>&#10003;</i> CSS copied to clipboard!</div>
+    </div>
+    <div class="footer">
+        <button onclick="location.href='https://prodhan2.github.io';" id="homeButton">Home</button>
+        <button onclick="location.href='https://prodhan2.github.io';" id="aboutButton">About</button>
+        <button onclick="navigator.share({ title: 'Hi this is sujan prodhan Neumorphism Soft-UI CSS Generator this generator is so beautiful', url: location.href });" id="shareButton">Share</button>
+        <div class="footer-text">Powered by Sujan Prodhan ru.cse</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const preview = document.getElementById('preview');
+            const colorInput = document.getElementById('color');
+            const sizeInput = document.getElementById('size');
+            const radiusInput = document.getElementById('radius');
+            const distanceInput = document.getElementById('distance');
+            const intensityInput = document.getElementById('intensity');
+            const blurInput = document.getElementById('blur');
+            const shapeButtons = document.querySelectorAll('.shapes button');
+            const cssOutput = document.getElementById('cssOutput');
+            const copyButton = document.getElementById('copy');
+            const popup = document.getElementById('popup');
+            const homeButton = document.getElementById('homeButton');
+            const aboutButton = document.getElementById('aboutButton');
+            const shareButton = document.getElementById('shareButton');
+
+            const vibrate = () => {
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
+            };
+
+            [homeButton, aboutButton, shareButton].forEach(button => {
+                button.addEventListener('click', vibrate);
+            });
+
+            let shape = 'rounded';
+
+            const updatePreview = () => {
+                const color = colorInput.value;
+                const size = sizeInput.value;
+                const radius = radiusInput.value;
+                const distance = distanceInput.value;
+                const intensity = intensityInput.value;
+                const blur = blurInput.value;
+
+                let borderRadius;
+                switch (shape) {
+                    case 'square':
+                        borderRadius = '0';
+                        break;
+                    case 'rounded':
+                        borderRadius = `${radius}px`;
+                        break;
+                    case 'circle':
+                        borderRadius = '50%';
+                        break;
+                }
+
+                const boxShadow = `${distance}px ${distance}px ${intensity}px ${blur}px rgba(0,0,0,0.2), -${distance}px -${distance}px ${intensity}px ${blur}px rgba(255,255,255,0.7)`;
+
+                preview.style.width = `${size}px`;
+                preview.style.height = `${size}px`;
+                preview.style.backgroundColor = color;
+                preview.style.borderRadius = borderRadius;
+                preview.style.boxShadow = boxShadow;
+
+                const cssCode = `
+border-radius: ${borderRadius};
+background-color: ${color};
+box-shadow: ${boxShadow};
+                               `.trim();
+
+                cssOutput.textContent = cssCode;
+            };
+
+            shapeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    shape = button.dataset.shape;
+                    updatePreview();
+                });
+            });
+
+            [colorInput, sizeInput, radiusInput, distanceInput, intensityInput, blurInput].forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
+
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(cssOutput.textContent).then(() => {
+                    popup.classList.add('show');
+                    setTimeout(() => {
+                        popup.classList.remove('show');
+                    }, 2000);
+                });
+            });
+
+            updatePreview();
+        });
+    </script>
+</body>
+</html>
+
