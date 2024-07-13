@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Statistics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #00f0e8;
+            color: #0e0909;
+            text-align: center;
+            width: 100vw;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .chart-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 10px auto;
+            padding: 10px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .chart-container {
+            background-color: #ffffff;
+            border: 4px solid #dee6e6;
+            padding: 2px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(183, 228, 5, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .chart-container:hover {
+            transform: scale(1.02);
+            border: 4px solid #0cebeb;
+            
+        }
+
+        .chart-container h2 {
+            margin-top: 0;
+            color: #343a40;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #213288;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            cursor: grab;
+            background-color: #f8f9fa;
+        }
+
+        tr {
+            transition: background-color 0.2s;
+        }
+
+        tr:hover {
+            background-color: #5bcdd1;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .chart-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Student Statistics</h1>
+    </header>
+    
+    <section class="chart-section">
+        <div class="chart-container">
+            <h2>Number of Students per Session</h2>
+            <canvas id="sessionChart"></canvas>
+            <button onclick="downloadChart('sessionChart', 'session_chart.png')">Download Chart as PNG</button>
+            <button onclick="downloadPDF('sessionChart', 'session_chart.pdf', 'sessionTable')">Download Chart as PDF</button>
+            <table id="sessionTable" draggable="true"></table>
+        </div>
+        <div class="chart-container">
+            <h2>Student Blood Type Distribution</h2>
+            <canvas id="bloodTypeChart"></canvas>
+            <button onclick="downloadChart('bloodTypeChart', 'blood_type_chart.png')">Download Chart as PNG</button>
+            <button onclick="downloadPDF('bloodTypeChart', 'blood_type_chart.pdf', 'bloodTypeTable')">Download Chart as PDF</button>
+            <table id="bloodTypeTable" draggable="true"></table>
+        </div>
+        <div class="chart-container">
+            <h2>Student Department Distribution</h2>
+            <canvas id="departmentChart"></canvas>
+            <button onclick="downloadChart('departmentChart', 'department_chart.png')">Download Chart as PNG</button>
+            <button onclick="downloadPDF('departmentChart', 'department_chart.pdf', 'departmentTable')">Download Chart as PDF</button>
+            <table id="departmentTable" draggable="true"></table>
+        </div>
+        <div class="chart-container">
+            <h2>Student Upazila Distribution</h2>
+            <canvas id="upazilaChart"></canvas>
+            <button onclick="downloadChart('upazilaChart', 'upazila_chart.png')">Download Chart as PNG</button>
+            <button onclick="downloadPDF('upazilaChart', 'upazila_chart.pdf', 'upazilaTable')">Download Chart as PDF</button>
+            <table id="upazilaTable" draggable="true"></table>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby-D-YV0eu1GBzc5EPqAcL2hKeCMsctDkhq-eiLdEo7RfgvHeEXRQtgj1AdtYA9Ev5sYw/exec';
+
+        fetch(scriptURL)
+            .then(response => response.json())
+            .then(data => {
+                const studentData = data;
+
+                const sessions = {};
+                studentData.forEach(student => {
+                    sessions[student.session] = (sessions[student.session] || 0) + 1;
+                });
+
+                const sessionLabels = Object.keys(sessions);
+                const sessionData = Object.values(sessions);
+                populateTable('sessionTable', sessionLabels, sessionData);
+
+                const bloodTypes = {
+                    'A+': 0,
+                    'A-': 0,
+                    'B+': 0,
+                    'B-': 0,
+                    'AB+': 0,
+                    'AB-': 0,
+                    'O+': 0,
+                    'O-': 0
+                };
+
+                studentData.forEach(student => {
+                    bloodTypes[student.blood]++;
+                });
+
+                const bloodLabels = Object.keys(bloodTypes);
+                const bloodData = Object.values(bloodTypes);
+                populateTable('bloodTypeTable', bloodLabels, bloodData);
+
+                const departments = {};
+                studentData.forEach(student => {
+                    departments[student.department] = (departments[student.department] || 0) + 1;
+                });
+
+                const departmentLabels = Object.keys(departments);
+                const departmentData = Object.values(departments);
+                populateTable('departmentTable', departmentLabels, departmentData);
+
+                const upazilas = {};
+                studentData.forEach(student => {
+                    upazilas[student.upazila] = (upazilas[student.upazila] || 0) + 1;
+                });
+
+                const upazilaLabels = Object.keys(upazilas);
+                const upazilaData = Object.values(upazilas);
+                populateTable('upazilaTable', upazilaLabels, upazilaData);
+
+                const sessionCtx = document.getElementById('sessionChart').getContext('2d');
+                new Chart(sessionCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: sessionLabels,
+                        datasets: [{
+                            label: 'Number of Students',
+                            data: sessionData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                precision: 0
+                            }
+                        }
+                    }
+                });
+
+                const bloodTypeCtx = document.getElementById('bloodTypeChart').getContext('2d');
+                new Chart(bloodTypeCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: bloodLabels,
+                        datasets: [{
+                            label: 'Blood Type Distribution',
+                            data: bloodData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)',
+                                'rgba(255, 159, 64, 0.6)',
+                                'rgba(201, 203, 207, 0.6)',
+                                'rgba(140, 25, 255, 0.6)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(201, 203, 207, 1)',
+                                'rgba(140, 25, 255, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+                const departmentCtx = document.getElementById('departmentChart').getContext('2d');
+                new Chart(departmentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: departmentLabels,
+                        datasets: [{
+                            label: 'Department Distribution',
+                            data: departmentData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+                const upazilaCtx = document.getElementById('upazilaChart').getContext('2d');
+                new Chart(upazilaCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: upazilaLabels,
+                        datasets: [{
+                            label: 'Upazila Distribution',
+                            data: upazilaData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            });
+
+        function populateTable(tableId, labels, data) {
+            const table = document.getElementById(tableId);
+            table.innerHTML = '<tr><th>Name</th><th>Count</th></tr>';
+            labels.forEach((label, index) => {
+                table.innerHTML += `
+                    <tr draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+                        <td>${label}</td>
+                        <td>${data[index]}</td>
+                    </tr>`;
+            });
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text/plain", event.target.rowIndex);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const draggedRowIndex = event.dataTransfer.getData("text/plain");
+            const targetRowIndex = event.target.parentNode.rowIndex;
+
+            if (draggedRowIndex !== targetRowIndex) {
+                const table = event.target.closest('table');
+                const draggedRow = table.rows[draggedRowIndex];
+                const targetRow = table.rows[targetRowIndex];
+
+                table.insertBefore(draggedRow, targetRow);
+            }
+        }
+
+        function downloadChart(chartId, fileName) {
+            const chart = document.getElementById(chartId);
+            const canvas = chart.toDataURL("image/png", 1);
+            const link = document.createElement('a');
+            link.href = canvas;
+            link.download = fileName;
+            link.click();
+        }
+
+        async function downloadPDF(chartId, fileName, tableId) {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+
+            const chart = document.getElementById(chartId);
+            const imgData = chart.toDataURL("image/png");
+            pdf.addImage(imgData, 'PNG', 10, 10, 190, 100);
+           
+            // Add the table
+            const table = document.getElementById(tableId);
+            let pdfY = 130; // Starting Y position for the table
+            pdf.setFontSize(10);
+            pdf.text('Data Table:', 10, pdfY);
+            pdf.autoTable({ html: table, startY: pdfY + 5 });
+
+            // Add date and time
+            const now = new Date();
+            const dateString = now.toLocaleString();
+            pdf.setFontSize(10);
+            pdf.text("Powered by Sujan Prodhan (University of Rajshahi)", 10, pdf.internal.pageSize.height - 25);
+            pdf.setFontSize(8);
+            pdf.text(`Date: ${dateString}`, 10, pdf.internal.pageSize.height - 30);
+
+            pdf.save(fileName);
+        }
+    </script>
+</body>
+</html>
