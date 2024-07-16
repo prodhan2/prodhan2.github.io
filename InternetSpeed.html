@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Tester</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            width: 100vw;
+            max-width: 800px;
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            padding: 30px;
+        }
+        .circle {
+            width: 300px;
+            height: 300px;
+            background: #e0e5ec;
+            border-radius: 50%;
+            box-shadow: inset 20px 20px 60px #bebebe, inset -20px -20px 60px #ffffff;
+            margin: 0 auto;
+            position: relative;
+        }
+        .speed {
+            font-size: 2em;
+            color: #333;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .button {
+            background: #76c7c0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .dial {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background: conic-gradient(#76c7c0 0%, #76c7c0 50%, #e0e5ec 50%, #e0e5ec 100%);
+            transform: rotate(0deg);
+            transition: transform 1s;
+        }
+        .info-table {
+            margin-top: 30px;
+        }
+        .info-table th, .info-table td {
+            background: #e0e5ec;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+        }
+        canvas {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Internet Speed Tester</h2>
+            <div id="digitalClock" style="font-size: 1.5em;"></div>
+        </div>
+        <div class="circle">
+            <div class="dial" id="downloadDial"></div>
+            <div class="speed" id="speedValue">0 Mbps</div>
+        </div>
+        <button class="button" id="startBtn">Start Test</button>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <canvas id="speedChart" width="400" height="200"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="dataPieChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <table class="table table-bordered info-table mt-4">
+            <thead>
+                <tr>
+                    <th>Latency (Unloaded)</th>
+                    <th>Latency (Loaded)</th>
+                    <th>Client</th>
+                    <th>Client IP</th>
+                    <th>Server(s)</th>
+                    <th>Data Used</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="latencyUnloaded">54 ms</td>
+                    <td id="latencyLoaded">1.4 s</td>
+                    <td id="client">Ghuramara, BD</td>
+                    <td id="clientIP">103.231.163.238</td>
+                    <td id="servers">Singapore, SG | Kolkata, IN</td>
+                    <td id="dataUsed">4.9MB / 140MB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const speedValue = document.getElementById('speedValue');
+        const downloadDial = document.getElementById('downloadDial');
+        
+        const ctx = document.getElementById('speedChart').getContext('2d');
+        const pieCtx = document.getElementById('dataPieChart').getContext('2d');
+
+        const speedData = {
+            labels: [],
+            datasets: [{
+                label: 'Download Speed (Mbps)',
+                data: [],
+                borderColor: 'rgba(76, 175, 80, 1)',
+                backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                borderWidth: 2,
+            }]
+        };
+
+        const speedChart = new Chart(ctx, {
+            type: 'line',
+            data: speedData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                    }
+                }
+            }
+        });
+
+        const dataPieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Data Used', 'Data Remaining'],
+                datasets: [{
+                    data: [4.9, 140 - 4.9],
+                    backgroundColor: ['#76c7c0', '#e0e5ec'],
+                    hoverBackgroundColor: ['#6ab8a3', '#d1d5db'],
+                }]
+            }
+        });
+
+        function updateLatency() {
+            const unloadedLatency = Math.floor(Math.random() * 100);
+            const loadedLatency = Math.floor(Math.random() * 200);
+            document.getElementById('latencyUnloaded').textContent = `${unloadedLatency} ms`;
+            document.getElementById('latencyLoaded').textContent = `${loadedLatency} ms`;
+        }
+
+        function updateClientInfo() {
+            document.getElementById('client').textContent = "Ghuramara, BD";
+            document.getElementById('clientIP').textContent = "103.231.163.238";
+            document.getElementById('servers').textContent = "Singapore, SG | Kolkata, IN";
+            document.getElementById('dataUsed').textContent = "4.9MB / 140MB";
+        }
+
+        function updateSpeed(speed) {
+            speedValue.textContent = `${speed} Mbps`;
+            downloadDial.style.transform = `rotate(${(speed / 100) * 360}deg)`;
+            speedChart.data.labels.push('');
+            speedChart.data.datasets[0].data.push(speed);
+            if (speedChart.data.labels.length > 10) {
+                speedChart.data.labels.shift();
+                speedChart.data.datasets[0].data.shift();
+            }
+            speedChart.update();
+
+            const usedData = 4.9 + (speed / 10);
+            const remainingData = 140 - usedData;
+            dataPieChart.data.datasets[0].data = [usedData, remainingData];
+            dataPieChart.update();
+        }
+
+        async function fetchRealSpeed() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    const downloadSpeed = Math.floor(Math.random() * 100);
+                    resolve(downloadSpeed);
+                }, 1000);
+            });
+        }
+
+        async function startSpeedTest() {
+            startBtn.disabled = true;
+            updateClientInfo();
+            updateLatency();
+
+            let interval = setInterval(async () => {
+                const downloadSpeed = await fetchRealSpeed();
+                updateSpeed(downloadSpeed);
+                updateLatency();
+            }, 1000);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                startBtn.disabled = false;
+            }, 10000);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('digitalClock').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+
+        startBtn.addEventListener('click', startSpeedTest);
+    </script>
+</body>
+</html>
+
