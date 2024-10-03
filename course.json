@@ -1,0 +1,450 @@
+{
+  "SEMESTER-1.1": [
+    {
+      "Course Code": "ENG1111",
+      "Course Title": "Technical and Communicative English",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "MATH1121",
+      "Course Title": "Differential and Integral Calculus",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CHEM1121",
+      "Course Title": "Chemistry",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "EEE1132",
+      "Course Title": "Basic Electronics",
+      "Marks": 75,
+      "Credit": 2
+    },
+    {
+      "Course Code": "CSE1111",
+      "Course Title": "Introduction to Computer Systems",
+      "Marks": 75,
+      "Credit": 2
+    },
+    {
+      "Course Code": "CSE1112",
+      "Course Title": "Computer Maintenance and Engineering Drawing Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE1122",
+      "Course Title": "Structural Programming Language Lab",
+      "Marks": 50,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-1.2": [
+    {
+      "Course Code": "ECON1211",
+      "Course Title": "Engineering Economics",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "STAT1211",
+      "Course Title": "Statistics for Engineers",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "MATH1221",
+      "Course Title": "Co-ordinate Geometry, Vector analysis and Complex Variable",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "PHY1211",
+      "Course Title": "Basic Electricity and Electrical Circuits",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE1211",
+      "Course Title": "Introduction to Digital Electronics",
+      "Marks": 75,
+      "Credit": 2
+    },
+    {
+      "Course Code": "CSE1212",
+      "Course Title": "Introduction to Digital Electronics Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE1222",
+      "Course Title": "Object Oriented Programming Lab",
+      "Marks": 50,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-2.1": [
+    {
+      "Course Code": "ACCO2111",
+      "Course Title": "Industrial Management and Accountancy",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "STAT2111",
+      "Course Title": "Theory of Statistics",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "MATH2131",
+      "Course Title": "Differential Equations and Optimization",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE2111",
+      "Course Title": "Digital System Design",
+      "Marks": 75,
+      "Credit": 2
+    },
+    {
+      "Course Code": "CSE2112",
+      "Course Title": "Digital System Design Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE2121",
+      "Course Title": "Data Structure",
+      "Marks": 75,
+      "Credit": 2
+    },
+    {
+      "Course Code": "CSE2122",
+      "Course Title": "Data Structure Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE2131",
+      "Course Title": "Discrete Mathematics",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "SE2142",
+      "Course Title": "Writing Professional Code Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-2.2": [
+    {
+      "Course Code": "LAW2211",
+      "Course Title": "Cyber and Intellectual Property Law",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "MATH2231",
+      "Course Title": "Numerical Methods",
+      "Marks": 50,
+      "Credit": 2
+    },
+    {
+      "Course Code": "MATH2232",
+      "Course Title": "Numerical Methods Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "MATH2141",
+      "Course Title": "Linear Algebra",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE2211",
+      "Course Title": "Theory of Computation",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE2221",
+      "Course Title": "Design and Analysis of Algorithms",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE2222",
+      "Course Title": "Design and Analysis of Algorithms Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE2231",
+      "Course Title": "Computer Architecture and Organization",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE2232",
+      "Course Title": "Computer Architecture and Organization Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE2242",
+      "Course Title": "Technical Writing and Presentation",
+      "Marks": 75,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE2252",
+      "Course Title": "Web Application Development Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-3.1": [
+    {
+      "Course Code": "CSE3111",
+      "Course Title": "Software Engineering",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3112",
+      "Course Title": "Software Engineering Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3121",
+      "Course Title": "Database Management Systems",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3122",
+      "Course Title": "Database Management Systems Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3131",
+      "Course Title": "Web Engineering",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3132",
+      "Course Title": "Web Engineering Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3141",
+      "Course Title": "Compiler Design",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3142",
+      "Course Title": "Compiler Design Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3151",
+      "Course Title": "Engineering Ethics and Environment Protection",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3161",
+      "Course Title": "Communication Engineering",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3171",
+      "Course Title": "Mobile Application Development Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-3.2": [
+    {
+      "Course Code": "CSE3211",
+      "Course Title": "Project Planning & Management",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3221",
+      "Course Title": "Digital Signal Processing",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3222",
+      "Course Title": "Digital Signal Processing Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3231",
+      "Course Title": "Microprocessor and Assembly Language",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3232",
+      "Course Title": "Microprocessor and Assembly Language Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3241",
+      "Course Title": "Operating Systems",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3242",
+      "Course Title": "Operating Systems Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE3251",
+      "Course Title": "Computer Networks",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE3252",
+      "Course Title": "Computer Networks Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-4.1": [
+    {
+      "Course Code": "CSE4111",
+      "Course Title": "Parallel Processing and Distributed System",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4112",
+      "Course Title": "Parallel Processing and Distributed System Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4121",
+      "Course Title": "Object Oriented Design and Design Patterns",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4122",
+      "Course Title": "Object Oriented Design and Design Patterns Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4131",
+      "Course Title": "Artificial Intelligence",
+      "Marks": null,
+      "Credit": null
+    },
+    {
+      "Course Code": "CSE4132",
+      "Course Title": "Artificial Intelligence Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4141",
+      "Course Title": "Microprocessor Interfacing and Microcontrollers",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4142",
+      "Course Title": "Microprocessor Interfacing and Microcontrollers Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ],
+  "SEMESTER-4.2": [
+    {
+      "Course Code": "CSE4211",
+      "Course Title": "Computational Geometry",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4212",
+      "Course Title": "Computational Geometry Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4221",
+      "Course Title": "Digital Image Processing",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4222",
+      "Course Title": "Digital Image Processing Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4231",
+      "Course Title": "Computer Simulation and Modeling",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4232",
+      "Course Title": "Computer Simulation and Modeling Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4241",
+      "Course Title": "UI UX Engineering",
+      "Marks": 75,
+      "Credit": null
+    },
+    {
+      "Course Code": "CSE4242",
+      "Course Title": "UI UX Engineering Lab",
+      "Marks": 25,
+      "Credit": 1
+    },
+    {
+      "Course Code": "CSE4251",
+      "Course Title": "Blockchain",
+      "Marks": 75,
+      "Credit": 3
+    },
+    {
+      "Course Code": "CSE4252",
+      "Course Title": "Blockchain Lab",
+      "Marks": 25,
+      "Credit": 1
+    }
+  ]
+}
