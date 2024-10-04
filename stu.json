@@ -1,0 +1,103 @@
+{
+  "students": [
+    {
+      "batch": "Batch-27",
+      "full_name": "Tahmina Khatun",
+      "student_id": "27010001",
+      "phone_number": "01711234567",
+      "email": "tahmina.khatun27@gmail.com",
+      "blood_group": "O+",
+      "birthday": "15-Feb",
+      "home_town": "Dhaka",
+      "hall": "Taposhi"
+    },
+    {
+      "batch": "Batch-28",
+      "full_name": "Mahmudul Hasan",
+      "student_id": "28010002",
+      "phone_number": "01719876543",
+      "email": "mahmudul.hasan28@gmail.com",
+      "blood_group": "A+",
+      "birthday": "8-Apr",
+      "home_town": "Rajshahi",
+      "hall": "Sher-e-Bangla"
+    },
+    {
+      "batch": "Batch-29",
+      "full_name": "Lutfur Rahman",
+      "student_id": "29010003",
+      "phone_number": "01715432123",
+      "email": "lutfur.rahman29@gmail.com",
+      "blood_group": "B+",
+      "birthday": "20-Jul",
+      "home_town": "Chittagong",
+      "hall": "Shah Mukhdum"
+    },
+    {
+      "batch": "Batch-30",
+      "full_name": "Md. Shamiur Rahman Sefat",
+      "student_id": "30010004",
+      "phone_number": "01321060821",
+      "email": "mdshamiurrahmansefat4039@gmail.com",
+      "blood_group": "A+",
+      "birthday": "8-Jan",
+      "home_town": "ChapaiNawabganj",
+      "hall": "Sher-e-Bangla"
+    },
+    {
+      "batch": "Batch-31",
+      "full_name": "Nafisa Akhter",
+      "student_id": "31010005",
+      "phone_number": "01321123456",
+      "email": "nafisa.akhter31@gmail.com",
+      "blood_group": "O+",
+      "birthday": "12-Mar",
+      "home_town": "Rajshahi",
+      "hall": "Taposhi"
+    },
+    {
+      "batch": "Batch-32",
+      "full_name": "Arman Hossain",
+      "student_id": "32010006",
+      "phone_number": "01716789012",
+      "email": "arman.hossain32@gmail.com",
+      "blood_group": "AB+",
+      "birthday": "24-Nov",
+      "home_town": "Sylhet",
+      "hall": "Sher-e-Bangla"
+    },
+    {
+      "batch": "Batch-33",
+      "full_name": "Farhana Yasmin",
+      "student_id": "33010007",
+      "phone_number": "01715436789",
+      "email": "farhana.yasmin33@gmail.com",
+      "blood_group": "B-",
+      "birthday": "19-May",
+      "home_town": "Barishal",
+      "hall": "Begum Rokeya"
+    },
+    {
+      "batch": "Batch-34",
+      "full_name": "Shafiul Alam",
+      "student_id": "34010008",
+      "phone_number": "01717654321",
+      "email": "shafiul.alam34@gmail.com",
+      "blood_group": "O-",
+      "birthday": "7-Aug",
+      "home_town": "Bogura",
+      "hall": "Shah Mukhdum"
+    },
+    {
+      "batch": "Batch-35",
+      "full_name": "Tanvir Ahmed",
+      "student_id": "35010009",
+      "phone_number": "01321009876",
+      "email": "tanvir.ahmed35@gmail.com",
+      "blood_group": "A-",
+      "birthday": "1-Oct",
+      "home_town": "Khulna",
+      "hall": "Sher-e-Bangla"
+    }
+  ]
+}
