@@ -219,6 +219,61 @@
       "birthday": "6-Nov",
       "home_town": "Dhaka",
       "hall": "Taposhi"
+    },
+    {
+      "batch": "Batch-40",
+      "full_name": "Sabrina Rahman",
+      "student_id": "40010017",
+      "phone_number": "01714785236",
+      "email": "sabrina.rahman40@gmail.com",
+      "blood_group": "O+",
+      "birthday": "5-Jan",
+      "home_town": "Khulna",
+      "hall": "Taposhi"
+    },
+    {
+      "batch": "Batch-40",
+      "full_name": "Nashirul Islam",
+      "student_id": "40010018",
+      "phone_number": "01715478932",
+      "email": "nashirul.islam40@gmail.com",
+      "blood_group": "A-",
+      "birthday": "27-Aug",
+      "home_town": "Dhaka",
+      "hall": "Sher-e-Bangla"
+    },
+    {
+      "batch": "Batch-40",
+      "full_name": "Tania Akter",
+      "student_id": "40010019",
+      "phone_number": "01719876512",
+      "email": "tania.akter40@gmail.com",
+      "blood_group": "AB+",
+      "birthday": "16-May",
+      "home_town": "Rajshahi",
+      "hall": "Taposhi"
+    },
+    {
+      "batch": "Batch-40",
+      "full_name": "Rafiq Uddin",
+      "student_id": "40010020",
+      "phone_number": "01717894267",
+      "email": "rafiq.uddin40@gmail.com",
+      "blood_group": "B+",
+      "birthday": "30-Jul",
+      "home_town": "Barishal",
+      "hall": "Ziaur Rahman"
+    },
+    {
+      "batch": "Batch-40",
+      "full_name": "Sadia Chowdhury",
+      "student_id": "40010021",
+      "phone_number": "01715678954",
+      "email": "sadia.chowdhury40@gmail.com",
+      "blood_group": "O-",
+      "birthday": "9-Feb",
+      "home_town": "Mymensingh",
+      "hall": "Sher-e-Bangla"
     }
   ]
 }
