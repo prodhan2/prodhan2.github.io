@@ -1,0 +1,23 @@
+{
+  "mathematics": [
+    {"name": "Quadratic Formula", "equation": "x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}"},
+    {"name": "Pythagorean Theorem", "equation": "a^2 + b^2 = c^2"},
+    {"name": "Euler's Formula", "equation": "e^{ix} = \cos x + i\sin x"},
+    {"name": "Derivative of a Function", "equation": "\frac{d}{dx} f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}"},
+    {"name": "Integral of x^n", "equation": "\int x^n dx = \frac{x^{n+1}}{n+1} + C"}
+  ],
+  "physics": [
+    {"name": "Newton's Second Law", "equation": "F = ma"},
+    {"name": "Einstein's Energy-Mass Equation", "equation": "E = mc^2"},
+    {"name": "Kinetic Energy", "equation": "KE = \frac{1}{2}mv^2"},
+    {"name": "Ohm's Law", "equation": "V = IR"},
+    {"name": "Wave Equation", "equation": "v = f\lambda"}
+  ],
+  "chemistry": [
+    {"name": "Ideal Gas Law", "equation": "PV = nRT"},
+    {"name": "Arrhenius Equation", "equation": "k = Ae^{-\frac{E_a}{RT}}"},
+    {"name": "pH Formula", "equation": "pH = -\log [H^+]"},
+    {"name": "Rate Law", "equation": "r = k[A]^m[B]^n"},
+    {"name": "Balancing a Simple Reaction", "equation": "2H_2 + O_2 \rightarrow 2H_2O"}
+  ]
+}
